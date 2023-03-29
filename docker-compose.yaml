@@ -1,0 +1,19 @@
+services:
+    withings:
+      image: thunini/withings:1.0.0
+      restart: on-failure
+      environment:
+        INITIAL_CODE: 37247057ad6a7121a604f75daf9c98eab912c039
+      depends_on:
+        - mongo-db
+      links:
+        - mongo-db
+    mongo-db:
+      image: mongo:latest
+      ports:
+        - "3001:27017"
+      environment:
+        - MONGO_INITDB_ROOT_USERNAME=pymongo
+        - MONGO_INITDB_ROOT_PASSWORD=pymongo
+      volumes:
+        - ./mongodb-data:/data/db
