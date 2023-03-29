@@ -38,25 +38,25 @@ def refresh_access_token(refresh_token):
 def main():
     # API Actions
     inputs = read_input_files()
-    code = inputs[0]
+    # code = inputs[0]
     startdate = inputs[1]
     enddate = inputs[2]
     is_first_access = True  
     token_lst = []
     access_token = ''
-    refresh_token = ''
+    refresh_token = inputs[0]
 
     # Access Mongodb
-    conn = pymongo.MongoClient()
-    db = conn.get_database("testDB")
-    coll = db.get_collection("data")
+    # conn = pymongo.MongoClient()
+    # db = conn.get_database("testDB")
+    # coll = db.get_collection("data")
 
     while True:
-        if is_first_access:
-            token_lst = get_access_token(code)
-            is_first_access = False
-        else:
-            token_lst = refresh_access_token(refresh_token)
+        # if is_first_access:
+        #     token_lst = get_access_token(code)
+        #     is_first_access = False
+        # else:
+        token_lst = refresh_access_token(refresh_token)
 
         access_token = token_lst[0]
         refresh_token = token_lst[1]   
@@ -89,7 +89,7 @@ def main():
         result = pd.concat([result, df2], axis=1)
         result = result.set_index('date')
         dict_result = result.to_dict()
-        coll.insert_one(dict_result)
+        # coll.insert_one(dict_result)
         result.to_csv('./withings_sleep_data.csv')
         
         time.sleep(15)
@@ -110,6 +110,7 @@ def main():
             device_df = pd.concat([device_df, df])
 
         device_df.to_csv('./withings_device_data.csv')
+        print(refresh_token)
         time.sleep(86400)
 
 if __name__ == "__main__":
