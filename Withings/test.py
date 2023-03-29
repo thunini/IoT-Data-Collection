@@ -38,18 +38,18 @@ def refresh_access_token(refresh_token):
 def main():
     # API Actions
     inputs = read_input_files()
-    # code = inputs[0]
+    refresh_token = os.environ.get('INITIAL_CODE')
     startdate = inputs[1]
     enddate = inputs[2]
     is_first_access = True  
     token_lst = []
     access_token = ''
-    refresh_token = inputs[0]
+    # refresh_token = inputs[0]
 
     # Access Mongodb
-    # conn = pymongo.MongoClient()
-    # db = conn.get_database("testDB")
-    # coll = db.get_collection("data")
+    conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:27017/")
+    db = conn.get_database("testDB")
+    coll = db.get_collection("data")
 
     while True:
         # if is_first_access:
@@ -89,7 +89,7 @@ def main():
         result = pd.concat([result, df2], axis=1)
         result = result.set_index('date')
         dict_result = result.to_dict()
-        # coll.insert_one(dict_result)
+        coll.insert_one(dict_result)
         result.to_csv('./withings_sleep_data.csv')
         
         time.sleep(15)
