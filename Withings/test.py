@@ -38,7 +38,7 @@ def refresh_access_token(refresh_token):
 def main():
     # API Actions
     inputs = read_input_files()
-    code = inputs[0]
+    code = os.environ.get('INITIAL_CODE')
     startdate = inputs[1]
     enddate = inputs[2]
     is_first_access = True  
