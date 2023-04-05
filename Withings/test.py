@@ -115,8 +115,7 @@ def main():
     # refresh_token = inputs[0]
 
     # Access Mongodb
-    # conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:27017/")
-    conn = pymongo.MongoClient()
+    conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:3001/")
     db = conn.get_database("testDB")
     coll = db.get_collection("data")
 
