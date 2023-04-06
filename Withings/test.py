@@ -154,9 +154,14 @@ def get_device_data(coll):
         token_lst[cnt][0], token_lst[cnt][1] = updated_token_lst[0], updated_token_lst[1]
 
         action = "getdevice"
-        device_curl = f"""curl --header "Authorization: Bearer {access_token}" --data "action={action}" https://wbsapi.withings.net/v2/user """
-        device_response = json.loads(os.popen(device_curl).read())
-        device_data = device_response['body']['devices']
+        try:
+            device_curl = f"""curl --header "Authorization: Bearer {access_token}" --data "action={action}" https://wbsapi.withings.net/v2/user """
+            device_response = json.loads(os.popen(device_curl).read())
+            device_data = device_response['body']['devices']
+        except Exception as e:
+            print("error")
+            logging.error(f"Error in retrieving device data: {e}")
+            
         device_df = pd.DataFrame()
         for i in range(len(device_data)):
             device_data[i]['last_session_date'] =  datetime.datetime.fromtimestamp(device_data[i]['last_session_date'])
@@ -186,9 +191,8 @@ def main():
     token_lst = read_input_files()
 
     # Access Mongodb
-    # conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:3001/")
-    conn = pymongo.MongoClient()
-    db = conn.get_database("testDB")
+    conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:3001/")
+    db = conn.get_database("Withings_testDB")
     sleep_data_coll = db.get_collection("sleep_data")
     device_data_coll = db.get_collection("device_data")
 
