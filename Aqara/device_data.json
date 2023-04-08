@@ -1,4 +1,4 @@
 {
-    "intent": "query.device.info",
-    "data": {}
-  }
+  "intent": "query.device.info",
+  "data": {}
+}

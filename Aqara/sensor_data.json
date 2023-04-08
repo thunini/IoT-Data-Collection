@@ -1,0 +1,10 @@
+{
+	"intent": "fetch.resource.statistics",
+	"data": {
+		"resources": {
+			"subjectId": "lumi.adshfyg2"
+		},
+		"startTime": "1680912000000",
+		"dimension": "30m"
+	}
+}

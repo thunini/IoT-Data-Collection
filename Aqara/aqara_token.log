@@ -1,2 +1,5 @@
 ERROR:root:Error in getting sensor: 'cp949' codec can't decode byte 0xec in position 345: illegal multibyte sequence
 ERROR:root:Error in getting sensor: 'cp949' codec can't decode byte 0xec in position 345: illegal multibyte sequence
+ERROR:root:Error in getting sensor: string indices must be integers
+ERROR:root:Error in getting sensor: string indices must be integers
+ERROR:root:Error in getting sensor: string indices must be integers
