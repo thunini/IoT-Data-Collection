@@ -62,9 +62,21 @@ def get_device_data():
             df = pd.DataFrame(device_data[i], index=[i])
             device_df = pd.concat([device_df, df])
 
-        print(device_df)
+        today = datetime.date.today()
+        try:
+            if os.path.isdir(f'./device_data/{today}/'):
+                device_df.to_csv(f'./device_data/{today}/Aqara_device_data{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
+            else:
+                os.makedirs(f'./device_data/{today}/')
+                device_df.to_csv(f'./device_data/{today}/Aqara_device_data{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
+        except Exception as e:
+            print("error")
+            logging.error(f"Error in saving device data: {e}")
+        
+        
         time.sleep(5)
 
+# get sensor data
 def get_sensor_data():
     token_lst = read_input_files()
     
@@ -76,28 +88,38 @@ def get_sensor_data():
         sign = gen_sign(access_token, app_id, key_id, nonce, timestamp, app_key)
         print(access_token, timestamp, nonce, sign)
         data = []
-        # try:
-        #     curl = f""" curl -H "Content-Type":"application/json" -H "Accesstoken:{access_token}" -H "Appid:{app_id}" -H "Keyid:{key_id}" -H "Nonce:{nonce}" -H "Time:{timestamp}" -H "sign:{sign}" --data @device_data.json https://open-kr.aqara.com/v3.0/open/api """
-        #     response = os.popen(curl).read()
-        #     data = json.loads(response)['result']['data']
-        # except Exception as e:
-        #     print("error")
-        #     logging.error(f"Error in getting sensor: {e}")
-        curl = f""" curl -H "Content-Type":"application/json" -H "Accesstoken:{access_token}" -H "Appid:{app_id}" -H "Keyid:{key_id}" -H "Nonce:{nonce}" -H "Time:{timestamp}" -H "sign:{sign}" --data @device_data.json https://open-kr.aqara.com/v3.0/open/api """
-        response = json.loads(os.popen(curl).read())
-        data = response['result']['data']
-        
-        print(data)
+        try:
+            curl = f""" curl -H "Content-Type":"application/json" -H "Accesstoken:{access_token}" -H "Appid:{app_id}" -H "Keyid:{key_id}" -H "Nonce:{nonce}" -H "Time:{timestamp}" -H "sign:{sign}" --data @device_data.json https://open-kr.aqara.com/v3.0/open/api """
+            response = os.popen(curl).read()
+            data = json.loads(response)['result']['data']
+        except Exception as e:
+            print("error")
+            logging.error(f"Error in getting sensor: {e}")
+
         df = pd.DataFrame()
-        df2 = pd.DataFrame()
+        result = pd.DataFrame()
 
         for i in reversed(range(len(data))):
             data[i]['timeStamp'] =  datetime.datetime.fromtimestamp(data[i]['timeStamp'] / 1000)
             data[i]['startTimeZone'] =  datetime.datetime.fromtimestamp(data[i]['startTimeZone'] / 1000)
             data[i]['endTimeZone'] =  datetime.datetime.fromtimestamp(data[i]['endTimeZone'] / 1000)
-            df = df.append(data[i], ignore_index=True)
+            df = pd.DataFrame(data[i], index=[i])
+            result = pd.concat([result, df])
 
-        print(df)
+        today = datetime.date.today()
+        try:
+            if os.path.isdir(f'./sensor_data/{today}/'):
+                filename = f'./sensor_data/{today}/Aqara_sensor_data{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
+                result.to_csv(filename)
+                print("file saved")
+            else:
+                os.makedirs(f'./sensor_data/{today}/')
+                filename = f'./sensor_data/{today}/Aqara_sensor_data{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
+                result.to_csv(filename)
+                print("file saved")
+        except Exception as e:
+            print("error")
+            logging.error(f"Error in saving sleep data: {e}")
         time.sleep(10)
         
 # main function
@@ -120,6 +142,7 @@ def main():
 if __name__ == "__main__":
     logging.basicConfig(filename='aqara_token.log', level=logging.ERROR)
     token_lst = []
+    sensor_lst = []
     app_id = "1082333016935813120e603a"
     app_key = "cbr154t51kdin7eewqbutbiwdw8k4isy"
     key_id = "K.1082333016981950464"
