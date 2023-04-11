@@ -87,6 +87,8 @@ def get_sensor_data():
         for sensors in sensor_lst:
             for sensor in sensors:
                 print(sensor)
+                yesterday = datetime.date.today() - datetime.timedelta(days=1)
+                yesterday = yesterday.strftime('%s')
                 timestamp = str(int(round(time.time() * 1000)))
                 nonce = get_random_string(16)
                 sign = gen_sign(access_token, app_id, key_id, nonce, timestamp, app_key)
@@ -96,7 +98,7 @@ def get_sensor_data():
                         "resources": {
                             "subjectId": f"{sensor}"
                         },
-                        "startTime": "1680912000000",
+                        "startTime": f"{yesterday}",
                         "dimension": "30m"
                     }
                 }
@@ -126,12 +128,12 @@ def get_sensor_data():
                     today = datetime.date.today()
                     try:
                         if os.path.isdir(f'./sensor_data/{today}/'):
-                            filename = f'./sensor_data/{today}/Aqara_sensor_data{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
+                            filename = f'./sensor_data/{today}/Aqara_sensor_data{cnt}_{sensor}.csv'
                             result.to_csv(filename)
                             print("file saved")
                         else:
                             os.makedirs(f'./sensor_data/{today}/')
-                            filename = f'./sensor_data/{today}/Aqara_sensor_data{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
+                            filename = f'./sensor_data/{today}/Aqara_sensor_data{cnt}_{sensor}.csv'
                             result.to_csv(filename)
                             print("file saved")
                     except Exception as e:
@@ -147,8 +149,8 @@ def main():
     # conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:3001/")
     # conn = pymongo.MongoClient()
     # db = conn.get_database("testDB")
-    # sleep_data_coll = db.get_collection("sleep_data")
-    # device_data_coll = db.get_collection("device_data")
+    # sensor_data_coll = db.get_collection("aqara_sensor_data")
+    # device_data_coll = db.get_collection("aqara_device_data")
 
     while True:
         get_device_data()
