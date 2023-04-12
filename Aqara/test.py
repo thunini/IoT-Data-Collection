@@ -80,6 +80,8 @@ def get_device_data():
 
 # get sensor data
 def get_sensor_data():
+    global sensor_lst
+
     for cnt in range(len(token_lst)):
         access_token = token_lst[cnt][0]
         refresh_token = token_lst[cnt][1]    
@@ -153,13 +155,13 @@ def main():
     # device_data_coll = db.get_collection("aqara_device_data")
 
     while True:
+        sensor_lst = []
         get_device_data()
         time.sleep(5)
         for i in range(len(sensor_lst)):
             sensor_lst[i].pop(0)
-
-        time.sleep(10)
         get_sensor_data()
+        time.sleep(10)
 
 
 
