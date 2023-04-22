@@ -51,7 +51,7 @@ def get_device_data():
         timestamp = str(int(round(time.time() * 1000)))
         nonce = get_random_string(16)
         sign = gen_sign(access_token, app_id, key_id, nonce, timestamp, app_key)
-        curl = f""" curl -H "Content-Type":"application/json" -H "Accesstoken:{access_token}" -H "Appid:{app_id}" -H "Keyid:{key_id}" -H "Nonce:{nonce}" -H "Time:{timestamp}" -H "sign:{sign}" --data @device_data.json https://open-kr.aqara.com/v3.0/open/api """
+        curl = f""" curl -H "Content-Type":"application/json" -H "Accesstoken:{access_token}" -H "Appid:{app_id}" -H "Keyid:{key_id}" -H "Nonce:{nonce}" -H "Time:{timestamp}" -H "sign:{sign}" --data @device_data.json https://open-cn.aqara.com/v3.0/open/api"""
         response = json.loads(os.popen(curl).read())
         device_data = response['result']['data']
         device_df = pd.DataFrame()
@@ -108,7 +108,7 @@ def get_sensor_data():
                     json.dump(json_data, json_file)
 
                 try:
-                    curl = f""" curl -H "Content-Type":"application/json" -H "Accesstoken:{access_token}" -H "Appid:{app_id}" -H "Keyid:{key_id}" -H "Nonce:{nonce}" -H "Time:{timestamp}" -H "sign:{sign}" --data @sensor_data.json https://open-kr.aqara.com/v3.0/open/api """
+                    curl = f""" curl -H "Content-Type":"application/json" -H "Accesstoken:{access_token}" -H "Appid:{app_id}" -H "Keyid:{key_id}" -H "Nonce:{nonce}" -H "Time:{timestamp}" -H "sign:{sign}" --data @sensor_data.json https://open-cn.aqara.com/v3.0/open/api """
                     response = os.popen(curl).read()
                     data = json.loads(response)['result']['data']
                 except Exception as e:
@@ -164,13 +164,11 @@ def main():
         time.sleep(10)
 
 
-
-
 if __name__ == "__main__":
     logging.basicConfig(filename='aqara_token.log', level=logging.ERROR)
     token_lst = []
     sensor_lst = []
     app_id = "1082333016935813120e603a"
-    app_key = "cbr154t51kdin7eewqbutbiwdw8k4isy"
-    key_id = "K.1082333016981950464"
+    app_key = "9b4otxco3vq06z0c6fqfb30da1mt05l1"
+    key_id = "K.1082333016981950466"
     main()
