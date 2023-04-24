@@ -176,12 +176,15 @@ def get_device_data(coll):
         dict_result = device_df.to_dict()
         coll.insert_one(dict_result)
         device_df = device_df.set_index('deviceid')
-        if os.path.isdir(f'./device_data/{today}/'):
-            device_df.to_csv(f'./device_data/{today}/withings_device_data_{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
-        else:
-            os.makedirs(f'./device_data/{today}/')
-            device_df.to_csv(f'./device_data/{today}/withings_device_data_{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
-
+        try:
+            if os.path.isdir(f'./device_data/{today}/'):
+                device_df.to_csv(f'./device_data/{today}/withings_device_data_{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
+            else:
+                os.makedirs(f'./device_data/{today}/')
+                device_df.to_csv(f'./device_data/{today}/withings_device_data_{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
+        except Exception as e:
+            print("error")
+            logging.error(f"Error in saving device data: {e}")
         
         time.sleep(10)
 
@@ -200,7 +203,7 @@ def main():
         get_sleep_data(sleep_data_coll)
         time.sleep(15)
         get_device_data(device_data_coll)
-        time.sleep(15)
+        time.sleep(86400)
 
 if __name__ == "__main__":
     logging.basicConfig(filename='withings_token.log', level=logging.ERROR)

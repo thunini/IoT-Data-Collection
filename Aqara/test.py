@@ -6,6 +6,7 @@ import json
 import time
 import pandas as pd
 import datetime  
+import calendar
 import logging
 
 # reading input files
@@ -89,8 +90,8 @@ def get_sensor_data():
         for sensors in sensor_lst:
             for sensor in sensors:
                 print(sensor)
-                yesterday = datetime.date.today() - datetime.timedelta(days=1)
-                yesterday = yesterday.strftime('%s')
+                yesterday = datetime.date.today() - datetime.timedelta(days=2)
+                yesterday = calendar.timegm(yesterday.timetuple()) * 1000
                 timestamp = str(int(round(time.time() * 1000)))
                 nonce = get_random_string(16)
                 sign = gen_sign(access_token, app_id, key_id, nonce, timestamp, app_key)
@@ -98,10 +99,13 @@ def get_sensor_data():
                 json_data = { "intent": "fetch.resource.statistics",
                     "data": {
                         "resources": {
-                            "subjectId": f"{sensor}"
+                            "subjectId": f"{sensor}",
+                            "resourceIds": [
+                                "0.1.85"
+                            ]
                         },
                         "startTime": f"{yesterday}",
-                        "dimension": "30m"
+                        "dimension": "7d"
                     }
                 }
                 with open("sensor_data.json", "w") as json_file:
@@ -110,6 +114,7 @@ def get_sensor_data():
                 try:
                     curl = f""" curl -H "Content-Type":"application/json" -H "Accesstoken:{access_token}" -H "Appid:{app_id}" -H "Keyid:{key_id}" -H "Nonce:{nonce}" -H "Time:{timestamp}" -H "sign:{sign}" --data @sensor_data.json https://open-cn.aqara.com/v3.0/open/api """
                     response = os.popen(curl).read()
+                    print(response)
                     data = json.loads(response)['result']['data']
                 except Exception as e:
                     print("error")
@@ -117,7 +122,6 @@ def get_sensor_data():
 
                 df = pd.DataFrame()
                 result = pd.DataFrame()
-                print(data)
 
                 if data != None:
                     for i in reversed(range(len(data))):
@@ -132,16 +136,16 @@ def get_sensor_data():
                         if os.path.isdir(f'./sensor_data/{today}/'):
                             filename = f'./sensor_data/{today}/Aqara_sensor_data{cnt}_{sensor}.csv'
                             result.to_csv(filename)
-                            print("file saved")
+                            print(f"file saved {filename}")
                         else:
                             os.makedirs(f'./sensor_data/{today}/')
                             filename = f'./sensor_data/{today}/Aqara_sensor_data{cnt}_{sensor}.csv'
                             result.to_csv(filename)
-                            print("file saved")
+                            print(f"file saved {filename}")
                     except Exception as e:
                         print("error")
                         logging.error(f"Error in saving sleep data: {e}")
-                time.sleep(10)
+                time.sleep(5)
         
 # main function
 def main():
@@ -149,7 +153,7 @@ def main():
     token_lst = read_input_files()
     # Access Mongodb
     # conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:3001/")
-    # conn = pymongo.MongoClient()
+    # conn = pymongo.MongoClient()  
     # db = conn.get_database("testDB")
     # sensor_data_coll = db.get_collection("aqara_sensor_data")
     # device_data_coll = db.get_collection("aqara_device_data")
