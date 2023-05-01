@@ -1,4 +1,3 @@
-# Import Libraries
 import json
 import os
 import pandas as pd
@@ -6,7 +5,6 @@ import datetime
 import time
 import pymongo
 import logging
-from multiprocessing import Process
 
 # reading input files
 def read_input_files():
@@ -30,7 +28,7 @@ def get_access_token(code):
         return [access_token, refresh_token]
     except Exception as e:
         print("error")
-        logging.error(f"Error retrieving access token: {e}")
+        logger.error(f"Error retrieving access token: {e}")
 
 # refresh access token
 def refresh_access_token(refresh_token):
@@ -44,7 +42,7 @@ def refresh_access_token(refresh_token):
         return [access_token, refresh_token]
     except Exception as e:
         print("error")
-        logging.error(f"Error retrieving refresh token: {e}")
+        logger.error(f"Error retrieving refresh token: {e}")
 
 # get sleep data by using "getsummary" action API
 def get_sleep_data(coll):
@@ -69,7 +67,7 @@ def get_sleep_data(coll):
             data = response['body']['series']
         except Exception as e:
             print("error")
-            logging.error(f"Error in retrieving sleep data: {e}")
+            logger.error(f"Error in retrieving sleep data: {e}")
 
         # check if data is empty (no sleep data recorded)
         if data == []:
@@ -95,7 +93,7 @@ def get_sleep_data(coll):
                     print("file saved")
             except Exception as e:
                 print("error")
-                logging.error(f"Error in saving empty sleep data: {e}")
+                logger.error(f"Error in saving empty sleep data: {e}")
 
         else:
             # Preprocess Data and Export as CSV
@@ -137,10 +135,11 @@ def get_sleep_data(coll):
                     print("file saved")
             except Exception as e:
                 print("error")
-                logging.error(f"Error in saving sleep data: {e}")
+                logger.error(f"Error in saving sleep data: {e}")
 
         time.sleep(10)
 
+# retrieve the device data
 def get_device_data(coll):
     global token_lst
     for cnt in range(len(token_lst)):
@@ -160,7 +159,7 @@ def get_device_data(coll):
             device_data = device_response['body']['devices']
         except Exception as e:
             print("error")
-            logging.error(f"Error in retrieving device data: {e}")
+            logger.error(f"Error in retrieving device data: {e}")
             
         device_df = pd.DataFrame()
         for i in range(len(device_data)):
@@ -184,11 +183,11 @@ def get_device_data(coll):
                 device_df.to_csv(f'./device_data/{today}/withings_device_data_{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
         except Exception as e:
             print("error")
-            logging.error(f"Error in saving device data: {e}")
+            logger.error(f"Error in saving device data: {e}")
         
         time.sleep(10)
 
-# Main Function
+# main Function
 def main():
     global token_lst
     token_lst = read_input_files()
@@ -206,6 +205,12 @@ def main():
         time.sleep(86400)
 
 if __name__ == "__main__":
-    logging.basicConfig(filename='withings_token.log', level=logging.ERROR)
+    logging.basicConfig(
+        filename='withings.log',
+        format='%(asctime)s,%(msecs)03d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
+        datefmt='%Y-%m-%d:%H:%M:%S',
+        level=logging.DEBUG)
+
+    logger = logging.getLogger(__name__)
     token_lst = []
     main()

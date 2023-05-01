@@ -53,6 +53,7 @@ def get_device_data():
         nonce = get_random_string(16)
         sign = gen_sign(access_token, app_id, key_id, nonce, timestamp, app_key)
         curl = f""" curl -H "Content-Type":"application/json" -H "Accesstoken:{access_token}" -H "Appid:{app_id}" -H "Keyid:{key_id}" -H "Nonce:{nonce}" -H "Time:{timestamp}" -H "sign:{sign}" --data @device_data.json https://open-cn.aqara.com/v3.0/open/api"""
+        print("------------------------ Getting Device Data ---------------------------")
         response = json.loads(os.popen(curl).read())
         device_data = response['result']['data']
         device_df = pd.DataFrame()
@@ -72,7 +73,7 @@ def get_device_data():
                 device_df.to_csv(f'./device_data/{today}/Aqara_device_data{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
         except Exception as e:
             print("error")
-            logging.error(f"Error in saving device data: {e}")
+            logger.error(f"Error in saving device data: {e}")
         
         # update sensor list
         lst = device_df['did'].values.tolist()
@@ -113,12 +114,13 @@ def get_sensor_data():
 
                 try:
                     curl = f""" curl -H "Content-Type":"application/json" -H "Accesstoken:{access_token}" -H "Appid:{app_id}" -H "Keyid:{key_id}" -H "Nonce:{nonce}" -H "Time:{timestamp}" -H "sign:{sign}" --data @sensor_data.json https://open-cn.aqara.com/v3.0/open/api """
+                    print("------------------------ Getting Sensor Data ---------------------------")
                     response = os.popen(curl).read()
                     print(response)
                     data = json.loads(response)['result']['data']
                 except Exception as e:
                     print("error")
-                    logging.error(f"Error in getting sensor: {e}")
+                    logger.error(f"Error in getting sensor: {e}")
 
                 df = pd.DataFrame()
                 result = pd.DataFrame()
@@ -144,7 +146,7 @@ def get_sensor_data():
                             print(f"file saved {filename}")
                     except Exception as e:
                         print("error")
-                        logging.error(f"Error in saving sleep data: {e}")
+                        logger.error(f"Error in saving sleep data: {e}")
                 time.sleep(5)
         
 # main function
@@ -169,7 +171,13 @@ def main():
 
 
 if __name__ == "__main__":
-    logging.basicConfig(filename='aqara_token.log', level=logging.ERROR)
+    logging.basicConfig(
+        filename='aqara.log',
+        format='%(asctime)s,%(msecs)03d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
+        datefmt='%Y-%m-%d:%H:%M:%S',
+        level=logging.DEBUG)
+
+    logger = logging.getLogger(__name__)
     token_lst = []
     sensor_lst = []
     app_id = "1082333016935813120e603a"
