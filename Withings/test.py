@@ -37,6 +37,7 @@ def refresh_access_token(refresh_token):
         print("----------------- Refreshing Access Token -------------------------")
         retrieve_access_token = f"""curl -d "{refresh_command}" https://wbsapi.withings.net/v2/oauth2"""
         response_data = json.loads(os.popen(retrieve_access_token).read())
+        print("hello")
         access_token = response_data['body']['access_token']
         refresh_token = response_data['body']['refresh_token']
         return [access_token, refresh_token]
@@ -193,10 +194,14 @@ def main():
     token_lst = read_input_files()
 
     # Access Mongodb
-    conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:3001/")
-    db = conn.get_database("Withings_testDB")
-    sleep_data_coll = db.get_collection("sleep_data")
-    device_data_coll = db.get_collection("device_data")
+    try:
+        conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:27017/")
+        db = conn.get_database("Withings_testDB")
+        sleep_data_coll = db.get_collection("sleep_data")
+        device_data_coll = db.get_collection("device_data")
+    except Exception as e:
+        print("error")
+        logger.error(f"Error in accessing mongodb: {e}")
 
     while True:
         get_sleep_data(sleep_data_coll)
