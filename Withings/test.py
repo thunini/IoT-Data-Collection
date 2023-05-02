@@ -28,7 +28,7 @@ def get_access_token(code):
         return [access_token, refresh_token]
     except Exception as e:
         print("error")
-        logger.error(f"Error retrieving access token: {e}")
+        logging.error(f"Error retrieving access token: {e}, response: {response_data}")
 
 # refresh access token
 def refresh_access_token(refresh_token):
@@ -37,13 +37,12 @@ def refresh_access_token(refresh_token):
         print("----------------- Refreshing Access Token -------------------------")
         retrieve_access_token = f"""curl -d "{refresh_command}" https://wbsapi.withings.net/v2/oauth2"""
         response_data = json.loads(os.popen(retrieve_access_token).read())
-        print("hello")
         access_token = response_data['body']['access_token']
         refresh_token = response_data['body']['refresh_token']
         return [access_token, refresh_token]
     except Exception as e:
         print("error")
-        logger.error(f"Error retrieving refresh token: {e}")
+        logging.error(f"Error retrieving refresh token: {e}, response: {response_data}")
 
 # get sleep data by using "getsummary" action API
 def get_sleep_data(coll):
@@ -68,33 +67,33 @@ def get_sleep_data(coll):
             data = response['body']['series']
         except Exception as e:
             print("error")
-            logger.error(f"Error in retrieving sleep data: {e}")
+            logging.error(f"Error in retrieving sleep data: {e}, uid: {cnt+1}")
 
         # check if data is empty (no sleep data recorded)
         if data == []:
-            empty_data = {"date": [f"{enddate}_{cnt}"], "startdate": ["none"], "enddate": ["none"]}
+            empty_data = {"date": [f"{enddate}_{cnt+1}"], "startdate": ["none"], "enddate": ["none"]}
             result = pd.DataFrame(empty_data)
             # setting for inserting it in mongodb
             users = []
             for k in range(len(result.index)):
-                users.append(f"user{cnt}")
+                users.append(f"user{cnt+1}")
             result = result.set_index(pd.Series(users))
             dict_result = result.to_dict()
             coll.insert_one(dict_result)
             result = result.set_index('date')
             try:
                 if os.path.isdir(f'./sleep_data/{enddate}/'):
-                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
+                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{cnt+1}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
                     result.to_csv(filename)
-                    print("file saved")
+                    logging.debug(f"sleep data file saved: uid {cnt+1}")
                 else:
                     os.makedirs(f'./sleep_data/{enddate}/')
-                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
+                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{cnt+1}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
                     result.to_csv(filename)
-                    print("file saved")
+                    logging.debug(f"sleep data file saved uid {cnt+1}")
             except Exception as e:
                 print("error")
-                logger.error(f"Error in saving empty sleep data: {e}")
+                logging.error(f"Error in saving empty sleep data: {e}, uid: {cnt+1}")
 
         else:
             # Preprocess Data and Export as CSV
@@ -119,24 +118,24 @@ def get_sleep_data(coll):
             # setting for inserting it in mongodb
             users = []
             for k in range(len(result.index)):
-                users.append(f"user{cnt}")
+                users.append(f"user{cnt+1}")
             result = result.set_index(pd.Series(users))
             dict_result = result.to_dict()
             coll.insert_one(dict_result)
             result = result.set_index('date')
             try:
                 if os.path.isdir(f'./sleep_data/{enddate}/'):
-                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
+                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{cnt+1}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
                     result.to_csv(filename)
-                    print("file saved")
+                    logging.debug(f"sleep data file saved uid {cnt+1}")
                 else:
                     os.makedirs(f'./sleep_data/{enddate}/')
-                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
+                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{cnt+1}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
                     result.to_csv(filename)
-                    print("file saved")
+                    logging.debug(f"sleep data file saved uid {cnt+1}")
             except Exception as e:
                 print("error")
-                logger.error(f"Error in saving sleep data: {e}")
+                logging.error(f"Error in saving sleep data: {e}, uid: {cnt+1}")
 
         time.sleep(10)
 
@@ -147,45 +146,51 @@ def get_device_data(coll):
         access_token = token_lst[cnt][0]
         refresh_token = token_lst[cnt][1]    
         updated_token_lst = refresh_access_token(refresh_token)
-        print(access_token, refresh_token)
         access_token = updated_token_lst[0]
         refresh_token = updated_token_lst[1]
         today = datetime.date.today()
         token_lst[cnt][0], token_lst[cnt][1] = updated_token_lst[0], updated_token_lst[1]
-
         action = "getdevice"
+
+        # get device data from the withings server
         try:
             device_curl = f"""curl --header "Authorization: Bearer {access_token}" --data "action={action}" https://wbsapi.withings.net/v2/user """
             device_response = json.loads(os.popen(device_curl).read())
             device_data = device_response['body']['devices']
         except Exception as e:
             print("error")
-            logger.error(f"Error in retrieving device data: {e}")
-            
-        device_df = pd.DataFrame()
-        for i in range(len(device_data)):
-            device_data[i]['last_session_date'] =  datetime.datetime.fromtimestamp(device_data[i]['last_session_date'])
-            df = pd.DataFrame(device_data[i], index=[i])
-            device_df = pd.concat([device_df, df])
+            logging.error(f"Error in retrieving device data: {e}, uid: {cnt+1}")
         
-        # setting for inserting it in mongodb
-        users = []
-        for k in range(len(device_df.index)):
-            users.append(f"user{cnt}")
-        device_df = device_df.set_index(pd.Series(users))
-        dict_result = device_df.to_dict()
-        coll.insert_one(dict_result)
-        device_df = device_df.set_index('deviceid')
+        # save device data
         try:
-            if os.path.isdir(f'./device_data/{today}/'):
-                device_df.to_csv(f'./device_data/{today}/withings_device_data_{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
-            else:
-                os.makedirs(f'./device_data/{today}/')
-                device_df.to_csv(f'./device_data/{today}/withings_device_data_{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
+            device_df = pd.DataFrame()
+            for i in range(len(device_data)):
+                device_data[i]['last_session_date'] =  datetime.datetime.fromtimestamp(device_data[i]['last_session_date'])
+                df = pd.DataFrame(device_data[i], index=[i])
+                device_df = pd.concat([device_df, df])
+            
+            # setting for inserting it in mongodb
+            users = []
+            for k in range(len(device_df.index)):
+                users.append(f"user{cnt+1}")
+            device_df = device_df.set_index(pd.Series(users))
+            dict_result = device_df.to_dict()
+            coll.insert_one(dict_result)
+            device_df = device_df.set_index('deviceid')
+            try:
+                if os.path.isdir(f'./device_data/{today}/'):
+                    device_df.to_csv(f'./device_data/{today}/withings_device_data_{cnt+1}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
+                    logging.debug(f"device data file saved: uid {cnt+1}")
+                else:
+                    os.makedirs(f'./device_data/{today}/')
+                    device_df.to_csv(f'./device_data/{today}/withings_device_data_{cnt+1}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
+                    logging.debug(f"device data file saved: uid {cnt+1}")
+            except Exception as e:
+                print("error")
+                logging.error(f"Error in saving device data: {e}, uid: {cnt+1}")
         except Exception as e:
             print("error")
-            logger.error(f"Error in saving device data: {e}")
-        
+            logging.error(f"Error in retrieving device data (empty device information): {e}, uid: {cnt+1}")
         time.sleep(10)
 
 # main Function
@@ -195,13 +200,14 @@ def main():
 
     # Access Mongodb
     try:
-        conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:27017/")
+        conn = pymongo.MongoClient()
+        # conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:3001/")
         db = conn.get_database("Withings_testDB")
         sleep_data_coll = db.get_collection("sleep_data")
         device_data_coll = db.get_collection("device_data")
     except Exception as e:
         print("error")
-        logger.error(f"Error in accessing mongodb: {e}")
+        logging.error(f"Error in accessing mongodb: {e}")
 
     while True:
         get_sleep_data(sleep_data_coll)
@@ -216,6 +222,5 @@ if __name__ == "__main__":
         datefmt='%Y-%m-%d:%H:%M:%S',
         level=logging.DEBUG)
 
-    logger = logging.getLogger(__name__)
     token_lst = []
     main()

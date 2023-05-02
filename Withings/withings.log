@@ -1,0 +1,4 @@
+2023-05-03:02:35:59,643 DEBUG    [test.py:135] sleep data file saved uid 1
+2023-05-03:02:36:11,492 DEBUG    [test.py:130] sleep data file saved uid 2
+2023-05-03:02:36:38,248 DEBUG    [test.py:187] device data file saved: uid 1
+2023-05-03:02:36:49,997 DEBUG    [test.py:183] device data file saved: uid 2
