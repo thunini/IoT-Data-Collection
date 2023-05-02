@@ -200,8 +200,7 @@ def main():
 
     # Access Mongodb
     try:
-        conn = pymongo.MongoClient()
-        # conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:3001/")
+        conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:3001/")
         db = conn.get_database("Withings_testDB")
         sleep_data_coll = db.get_collection("sleep_data")
         device_data_coll = db.get_collection("device_data")
