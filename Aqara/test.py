@@ -8,6 +8,7 @@ import pandas as pd
 import datetime  
 import calendar
 import logging
+import pymongo
 
 # reading input files
 def read_input_files():
@@ -42,6 +43,21 @@ def get_random_string(length: int):
     seq = string.ascii_uppercase + string.digits
     return "".join((random.choice(seq) for _ in range(length)))
 
+# get device model for using it in API
+def get_resource_id(model):
+    if model == "lumi.motion.agl02": # motion sensor
+        return ["0.4.85"]
+    elif model == "lumi.plug.maeu01": # smart plug
+        return ["0.13.85"]
+    elif model == "lumi.sensor_ht.agl02": # temperature and humidity sensor
+        return ["0.3.85", "0.2.85", "0.1.85"]
+    elif model == "lumi.magnet.agl02": # door sensor
+        return ["3.1.85"]
+    elif model == "lumi.sen_ill.agl01": # brightness sensor
+        return ["0.3.85"]
+    elif model == "lumi.vibration.aq1": # vibration sensor
+        return ["13.1.85", "14.1.85"]
+
 # get device data
 def get_device_data():
     global token_lst, app_id, app_key, key_id, sensor_lst
@@ -67,17 +83,22 @@ def get_device_data():
         today = datetime.date.today()
         try:
             if os.path.isdir(f'./device_data/{today}/'):
-                device_df.to_csv(f'./device_data/{today}/Aqara_device_data{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
+                device_df.to_csv(f'./device_data/{today}/Aqara_device_data{cnt+1}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
             else:
                 os.makedirs(f'./device_data/{today}/')
-                device_df.to_csv(f'./device_data/{today}/Aqara_device_data{cnt}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
+                device_df.to_csv(f'./device_data/{today}/Aqara_device_data{cnt+1}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv')
         except Exception as e:
             print("error")
             logger.error(f"Error in saving device data: {e}")
         
         # update sensor list
         lst = device_df['did'].values.tolist()
-        sensor_lst.append(lst)
+        lst2 = device_df['model'].values.tolist()
+        lst3 = []
+        for i in range(len(lst)):
+            if lst2[i] != "lumi.gateway.aqcn03":
+                lst3.append((lst[i], lst2[i]))
+        sensor_lst.append(lst3)
         time.sleep(10)
 
 # get sensor data
@@ -91,7 +112,7 @@ def get_sensor_data():
         for sensors in sensor_lst:
             for sensor in sensors:
                 print(sensor)
-                yesterday = datetime.date.today() - datetime.timedelta(days=2)
+                yesterday = datetime.date.today() - datetime.timedelta(days=10)
                 yesterday = calendar.timegm(yesterday.timetuple()) * 1000
                 timestamp = str(int(round(time.time() * 1000)))
                 nonce = get_random_string(16)
@@ -100,13 +121,11 @@ def get_sensor_data():
                 json_data = { "intent": "fetch.resource.statistics",
                     "data": {
                         "resources": {
-                            "subjectId": f"{sensor}",
-                            "resourceIds": [
-                                "0.1.85"
-                            ]
+                            "subjectId": f"{sensor[0]}",
+                            "resourceIds": get_resource_id(sensor[1])
                         },
                         "startTime": f"{yesterday}",
-                        "dimension": "7d"
+                        "dimension": "1d"
                     }
                 }
                 with open("sensor_data.json", "w") as json_file:
@@ -116,7 +135,6 @@ def get_sensor_data():
                     curl = f""" curl -H "Content-Type":"application/json" -H "Accesstoken:{access_token}" -H "Appid:{app_id}" -H "Keyid:{key_id}" -H "Nonce:{nonce}" -H "Time:{timestamp}" -H "sign:{sign}" --data @sensor_data.json https://open-cn.aqara.com/v3.0/open/api """
                     print("------------------------ Getting Sensor Data ---------------------------")
                     response = os.popen(curl).read()
-                    print(response)
                     data = json.loads(response)['result']['data']
                 except Exception as e:
                     print("error")
@@ -127,38 +145,37 @@ def get_sensor_data():
 
                 if data != None:
                     for i in reversed(range(len(data))):
-                        data[i]['timeStamp'] =  datetime.datetime.fromtimestamp(data[i]['timeStamp'] / 1000)
-                        data[i]['startTimeZone'] =  datetime.datetime.fromtimestamp(data[i]['startTimeZone'] / 1000)
-                        data[i]['endTimeZone'] =  datetime.datetime.fromtimestamp(data[i]['endTimeZone'] / 1000)
+                        # data[i]['timeStamp'] =  datetime.datetime.fromtimestamp(data[i]['timeStamp'])
+                        # data[i]['startTimeZone'] =  datetime.datetime.fromtimestamp(data[i]['startTimeZone'])
+                        # data[i]['endTimeZone'] =  datetime.datetime.fromtimestamp(data[i]['endTimeZone'])
                         df = pd.DataFrame(data[i], index=[i])
                         result = pd.concat([result, df])
 
                     today = datetime.date.today()
                     try:
-                        if os.path.isdir(f'./sensor_data/{today}/'):
-                            filename = f'./sensor_data/{today}/Aqara_sensor_data{cnt}_{sensor}.csv'
+                        if os.path.isdir(f'./sensor_data/{today}/{cnt+1}'):
+                            filename = f'./sensor_data/{today}/{cnt+1}/Aqara_sensor_data_{sensor}.csv'
                             result.to_csv(filename)
                             print(f"file saved {filename}")
                         else:
-                            os.makedirs(f'./sensor_data/{today}/')
-                            filename = f'./sensor_data/{today}/Aqara_sensor_data{cnt}_{sensor}.csv'
+                            os.makedirs(f'./sensor_data/{today}/{cnt+1}')
+                            filename = f'./sensor_data/{today}/{cnt+1}/Aqara_sensor_data_{sensor}.csv'
                             result.to_csv(filename)
                             print(f"file saved {filename}")
                     except Exception as e:
                         print("error")
                         logger.error(f"Error in saving sleep data: {e}")
-                time.sleep(5)
+                time.sleep(10)
         
 # main function
 def main():
     global token_lst, app_id, app_key, key_id, sensor_lst
     token_lst = read_input_files()
     # Access Mongodb
-    # conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:3001/")
-    # conn = pymongo.MongoClient()  
-    # db = conn.get_database("testDB")
-    # sensor_data_coll = db.get_collection("aqara_sensor_data")
-    # device_data_coll = db.get_collection("aqara_device_data")
+    conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:3001/")
+    db = conn.get_database("testDB")
+    sensor_data_coll = db.get_collection("aqara_sensor_data")
+    device_data_coll = db.get_collection("aqara_device_data")
 
     while True:
         sensor_lst = []

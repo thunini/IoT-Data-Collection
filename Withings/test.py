@@ -48,11 +48,13 @@ def refresh_access_token(refresh_token):
 def get_sleep_data(coll):
     global token_lst
     for cnt in range(len(token_lst)):
+        print(cnt)
         access_token = token_lst[cnt][0]
         refresh_token = token_lst[cnt][1]   
         updated_token_lst = refresh_access_token(refresh_token)
         action = "getsummary" 
-        enddate = datetime.date.today()
+        # enddate = datetime.date.today()
+        enddate = datetime.date(2023, 5, 29)
         startdate = enddate - datetime.timedelta(days=1)
         enddate, startdate = enddate.strftime('%Y-%m-%d'), startdate.strftime('%Y-%m-%d')
         access_token = updated_token_lst[0]
@@ -79,7 +81,8 @@ def get_sleep_data(coll):
                 users.append(f"user{cnt+1}")
             result = result.set_index(pd.Series(users))
             dict_result = result.to_dict()
-            coll.insert_one(dict_result)
+            # insert it in mongodb
+            # coll.insert_one(dict_result)
             result = result.set_index('date')
             try:
                 if os.path.isdir(f'./sleep_data/{enddate}/'):
@@ -121,7 +124,8 @@ def get_sleep_data(coll):
                 users.append(f"user{cnt+1}")
             result = result.set_index(pd.Series(users))
             dict_result = result.to_dict()
-            coll.insert_one(dict_result)
+            # insert in mongodb
+            # coll.insert_one(dict_result)
             result = result.set_index('date')
             try:
                 if os.path.isdir(f'./sleep_data/{enddate}/'):
@@ -137,12 +141,13 @@ def get_sleep_data(coll):
                 print("error")
                 logging.error(f"Error in saving sleep data: {e}, uid: {cnt+1}")
 
-        time.sleep(10)
+        time.sleep(7)
 
 # retrieve the device data
 def get_device_data(coll):
     global token_lst
     for cnt in range(len(token_lst)):
+        print(cnt)
         access_token = token_lst[cnt][0]
         refresh_token = token_lst[cnt][1]    
         updated_token_lst = refresh_access_token(refresh_token)
@@ -175,7 +180,8 @@ def get_device_data(coll):
                 users.append(f"user{cnt+1}")
             device_df = device_df.set_index(pd.Series(users))
             dict_result = device_df.to_dict()
-            coll.insert_one(dict_result)
+            # insert in mongodb
+            # coll.insert_one(dict_result)
             device_df = device_df.set_index('deviceid')
             try:
                 if os.path.isdir(f'./device_data/{today}/'):
@@ -191,7 +197,8 @@ def get_device_data(coll):
         except Exception as e:
             print("error")
             logging.error(f"Error in retrieving device data (empty device information): {e}, uid: {cnt+1}")
-        time.sleep(10)
+
+        time.sleep(7)
 
 # main Function
 def main():
@@ -199,20 +206,23 @@ def main():
     token_lst = read_input_files()
 
     # Access Mongodb
-    try:
-        conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:3001/")
-        db = conn.get_database("Withings_testDB")
-        sleep_data_coll = db.get_collection("sleep_data")
-        device_data_coll = db.get_collection("device_data")
-    except Exception as e:
-        print("error")
-        logging.error(f"Error in accessing mongodb: {e}")
-
+    # try:
+    #     conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:3001/")
+    #     db = conn.get_database("Withings_testDB")
+    #     sleep_data_coll = db.get_collection("sleep_data")
+    #     device_data_coll = db.get_collection("device_data")
+    # except Exception as e:
+    #     print("error")
+    #     logging.error(f"Error in accessing mongodb: {e}")
+    sleep_data_coll = ""
+    device_data_coll = ""
     while True:
         get_sleep_data(sleep_data_coll)
-        time.sleep(15)
+        time.sleep(10)
         get_device_data(device_data_coll)
-        time.sleep(86400)
+        time.sleep(10)
+        break
+    # time.sleep(86400)
 
 if __name__ == "__main__":
     logging.basicConfig(

@@ -1,1 +1,1 @@
-{"intent": "fetch.resource.statistics", "data": {"resources": {"subjectId": "lumi.158d0008d0cc42", "resourceIds": ["0.1.85"]}, "startTime": "1682121600000", "dimension": "7d"}}
+{"intent": "fetch.resource.statistics", "data": {"resources": {"subjectId": "lumi.54ef4410003fd219", "resourceIds": ["3.1.85"]}, "startTime": "1682294400000", "dimension": "1d"}}
