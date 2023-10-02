@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 ,timeStamp,resourceId,endTimeZone,value,subjectId,aggrType,startTimeZone
 1,,3.1.85,"05/22/2023, 20:00:00","{""0"":4,""1"":5}",lumi.54ef4410003fe5fd,4,"05/22/2023, 19:30:00"
 0,,3.1.85,"05/22/2023, 20:30:00","{""0"":1}",lumi.54ef4410003fe5fd,4,"05/22/2023, 20:00:00"
+=======
+,timeStamp,resourceId,endTimeZone,value,subjectId,aggrType,startTimeZone
+1,,3.1.85,"05/22/2023, 20:00:00","{""0"":4,""1"":5}",lumi.54ef4410003fe5fd,4,"05/22/2023, 19:30:00"
+0,,3.1.85,"05/22/2023, 20:30:00","{""0"":1}",lumi.54ef4410003fe5fd,4,"05/22/2023, 20:00:00"
+>>>>>>> 9296cf5c61ee6288374b58bc05a8386c5613520a

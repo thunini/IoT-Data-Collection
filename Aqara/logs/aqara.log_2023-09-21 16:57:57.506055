@@ -1,0 +1,13 @@
+2023-09-21:16:57:57,830 DEBUG    [test.py:87] Device data:             parentDid                 positionId              createTime  ...  firmwareVersion                       deviceName                    did
+0                      real2.1105195623932174336 2023-07-30 14:15:45.902  ...  3.3.2_0009.0004                           스마트 허브     lumi1.54ef4432208f
+1  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:15:45.902  ...       0.0.0_0029                             Door  lumi.54ef4410003fde9f
+2  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:15:45.902  ...       0.0.0_0029                        Microwave  lumi.54ef4410003fd7fe
+3  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:15:45.902  ...       0.0.0_0008                           Washer    lumi.158d0008d0cc42
+4  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:15:45.902  ...       0.0.0_0008                           Fridge    lumi.158d0008d0cf33
+5  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:15:45.902  ...       0.0.0_0028  Temperature and Humidity Sensor  lumi.54ef44100053a193
+6  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:15:45.902  ...       0.0.0_0027           Light Detection Sensor   lumi.4cf8cdf3c8dcfa2
+7  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:15:45.902  ...       0.0.0_0035                    Motion Sensor  lumi.54ef44100051aa5f
+8  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:19:51.083  ...       0.0.0_0008                            chair    lumi.158d0008d0be2b
+9  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:21:27.397  ...       0.0.0_0041                               tv  lumi.54ef4410001e9c6b
+
+[10 rows x 11 columns]

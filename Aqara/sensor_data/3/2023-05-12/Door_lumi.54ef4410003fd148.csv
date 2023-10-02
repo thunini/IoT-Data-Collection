@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 ,timeStamp,resourceId,endTimeZone,value,subjectId,aggrType,startTimeZone
 0,,3.1.85,"05/12/2023, 18:30:00","{""0"":4,""1"":4}",lumi.54ef4410003fd148,4,"05/12/2023, 18:00:00"
+=======
+,timeStamp,resourceId,endTimeZone,value,subjectId,aggrType,startTimeZone
+0,,3.1.85,"05/12/2023, 18:30:00","{""0"":4,""1"":4}",lumi.54ef4410003fd148,4,"05/12/2023, 18:00:00"
+>>>>>>> 9296cf5c61ee6288374b58bc05a8386c5613520a

@@ -1,0 +1,179 @@
+2023-09-21:19:13:57,284 DEBUG    [test.py:87] Device data:             parentDid                 positionId              createTime  ...  firmwareVersion              deviceName                    did
+0                      real2.1106625840121401344 2023-07-21 21:23:00.243  ...  3.5.2_0010.0004                  Hub E1     lumi1.54ef44321dfc
+1  lumi1.54ef44321dfc  real2.1106625840121401344 2023-07-21 21:23:00.243  ...       0.0.0_0008                 Cleaner    lumi.158d0008f34d6e
+2  lumi1.54ef44321dfc  real2.1106625840121401344 2023-07-21 21:27:10.965  ...       0.0.0_0008                   Chair    lumi.158d0008d0cf4d
+3  lumi1.54ef44321dfc  real2.1106625840121401344 2023-07-21 21:28:38.074  ...       0.0.0_0029               Microwave  lumi.54ef4410003fea1f
+4  lumi1.54ef44321dfc  real2.1106625840121401344 2023-07-21 21:29:30.988  ...       0.0.0_0029                    Door  lumi.54ef4410003fd148
+5  lumi1.54ef44321dfc  real2.1106625840121401344 2023-07-21 21:30:48.635  ...       0.0.0_0008                  Fridge    lumi.158d0008d0cf9a
+6  lumi1.54ef44321dfc  real2.1106625840121401344 2023-07-21 21:34:20.823  ...       0.0.0_0027  Light Detection Sensor   lumi.4cf8cdf3c8dd60b
+7  lumi1.54ef44321dfc  real2.1106625840121401344 2023-07-26 17:49:15.800  ...       0.0.0_0008                  Washer    lumi.158d0008d0ce43
+
+[8 rows x 11 columns]
+2023-09-21:19:14:02,785 DEBUG    [test.py:87] Device data:              parentDid                 positionId              createTime   timeZone  ... state  firmwareVersion  deviceName                    did
+0                       real2.1105141556232634368 2023-07-22 02:01:59.322  GMT+09:00  ...     1  4.0.2_0016.0004      Hub E1     lumi1.54ef4437986f
+1   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:05:54.305  GMT+09:00  ...     1       0.0.0_0035      motion  lumi.54ef44100051aff9
+2   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:09:21.406  GMT+09:00  ...     1       0.0.0_0029        door  lumi.54ef4410003fe65f
+3   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:10:58.384  GMT+09:00  ...     1       0.0.0_0029   microwave  lumi.54ef4410003fe5fd
+4   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:12:54.258  GMT+09:00  ...     1       0.0.0_0027  brightness  lumi.54ef44100065d28b
+5   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:14:39.405  GMT+09:00  ...     1       0.0.0_0028         env  lumi.54ef4410004b0c76
+6   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:20:08.245  GMT+09:00  ...     1       0.0.0_0041          tv  lumi.54ef44100062b6b9
+7   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:21:39.124  GMT+09:00  ...     1       0.0.0_0008      fridge    lumi.158d0008f34a8f
+8   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:26:55.047  GMT+09:00  ...     1       0.0.0_0008      washer    lumi.158d0008f34a74
+9   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:27:58.497  GMT+09:00  ...     1       0.0.0_0008       chair    lumi.158d0008f34fdf
+10  lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:29:33.071  GMT+09:00  ...     1       0.0.0_0008     cleaner    lumi.158d0008f35087
+
+[11 rows x 11 columns]
+2023-09-21:19:14:56,195 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:15:02,637 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:15:09,087 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:15:15,502 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:15:21,951 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:15:28,490 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:15:34,947 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:15:41,453 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:16:28,364 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:16:34,750 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:16:41,196 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:16:47,495 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:16:53,960 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:17:00,313 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:17:06,666 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:17:13,001 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:17:59,305 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:18:05,616 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:18:12,091 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:18:18,473 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:18:24,853 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:18:31,444 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:18:37,911 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:18:44,399 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:19:30,206 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:19:37,140 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:19:43,669 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:19:50,152 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:19:56,592 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:20:03,061 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:20:09,534 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:20:16,314 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:21:02,630 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:21:08,965 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:21:15,293 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:21:22,060 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:21:28,538 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:21:35,026 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:21:41,519 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:21:47,936 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:22:34,387 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:22:41,010 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:22:47,647 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:22:54,241 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:23:00,695 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:23:07,312 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:23:13,792 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:23:20,271 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:24:06,268 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:24:12,710 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:24:19,111 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:24:25,576 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:24:32,089 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:24:38,423 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:24:44,900 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:24:51,303 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:25:37,839 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:25:44,313 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:25:50,777 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:25:57,234 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:26:03,702 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:26:10,202 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:26:16,664 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:26:23,162 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:27:09,131 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:27:16,005 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:27:22,478 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:27:28,960 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:27:35,573 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:27:42,061 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:27:48,412 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:27:54,892 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:28:42,698 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:28:49,265 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:28:55,570 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:29:02,098 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:29:08,494 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:29:15,018 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:29:21,551 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:29:27,979 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:30:14,499 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:30:21,184 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:30:27,674 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:30:34,157 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:30:40,603 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:30:47,072 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:30:53,502 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:30:59,968 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:31:06,305 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:31:12,792 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:31:19,199 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:31:25,703 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:31:32,282 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:31:38,752 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:32:38,153 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:32:44,622 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:32:51,229 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:32:57,725 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:33:04,247 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:33:10,781 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:34:10,809 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:34:17,242 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:34:23,694 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:34:30,569 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:34:37,047 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:34:43,855 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:35:44,157 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:35:50,626 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:35:57,166 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:36:03,647 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:36:10,095 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:36:16,684 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:37:20,509 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:37:28,205 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:37:34,831 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:37:41,339 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:37:47,910 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:37:54,379 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:38:53,898 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:39:00,481 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:39:07,091 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:39:13,569 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:39:20,056 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:39:26,696 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:40:27,872 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:40:34,328 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:40:40,945 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:40:47,429 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:40:54,066 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:41:00,579 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:42:05,541 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:42:12,041 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:42:18,770 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:42:25,255 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:42:31,650 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:42:37,974 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:43:37,704 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:43:44,096 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:43:50,458 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:43:56,927 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:44:03,287 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:44:09,779 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:45:08,951 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:45:15,440 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:45:21,803 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:45:28,234 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:45:34,715 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:45:41,252 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:46:40,299 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:46:46,768 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:46:53,303 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:46:59,713 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:47:06,173 ERROR    [test.py:153] Error in getting sensor: string indices must be integers
+2023-09-21:19:47:12,513 ERROR    [test.py:153] Error in getting sensor: string indices must be integers

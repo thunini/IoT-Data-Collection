@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"intent": "fetch.resource.history", "data": {"subjectId": "lumi.54ef4410001e9c6b", "resourceIds": ["0.12.85", "0.13.85"], "startTime": "1695999600000", "endTime": "1695999600000", "size": 300}}
+=======
+{"intent": "fetch.resource.statistics", "data": {"resources": {"subjectId": "lumi.158d0008f35087", "resourceIds": ["13.1.85", "14.1.85"]}, "startTime": "1686409200000", "endTime": "1686668400000", "dimension": "30m", "size": 300}}
+>>>>>>> 9296cf5c61ee6288374b58bc05a8386c5613520a
