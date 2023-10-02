@@ -1,9 +1,0 @@
-,parentDid,positionId,createTime,timeZone,model,updateTime,modelType,state,firmwareVersion,deviceName,did
-0,,real2.1099052407981391872,2023-04-21 21:02:18.095,GMT+09:00,lumi.gateway.aqcn03,2023-04-21 21:02:18.095,1,0,3.3.0_0020.0004,Hub E1,lumi1.54ef4437dcdc
-1,lumi1.54ef4437dcdc,real2.1099052407981391872,2023-04-21 21:03:31.635,GMT+09:00,lumi.motion.agl02,2023-04-21 21:03:31.635,3,0,0.0.0_0035,Motion Sensor T1,lumi.54ef44100051aa89
-2,lumi1.54ef4437dcdc,real2.1099052407981391872,2023-04-21 21:05:21.962,GMT+09:00,lumi.vibration.aq1,2023-04-21 21:05:21.962,3,0,0.0.0_0008,Vibration Sensor Chair,lumi.158d0008d0be0c
-3,lumi1.54ef4437dcdc,real2.1099052407981391872,2023-04-21 21:09:26.791,GMT+09:00,lumi.magnet.agl02,2023-04-21 21:09:26.791,3,0,0.0.0_0029,Door and Window Sensor Door,lumi.54ef4410003fd219
-4,lumi1.54ef4437dcdc,real2.1099052407981391872,2023-04-21 21:11:30.260,GMT+09:00,lumi.vibration.aq1,2023-04-21 21:11:30.260,3,0,0.0.0_0008,Vibration Sensor Fridge,lumi.158d0008d0ce1f
-5,lumi1.54ef4437dcdc,real2.1099052407981391872,2023-04-21 21:13:42.187,GMT+09:00,lumi.magnet.agl02,2023-04-21 21:13:42.187,3,0,0.0.0_0029,Door and Window Sensor Microwave,lumi.54ef4410003fd35f
-6,lumi1.54ef4437dcdc,real2.1099052407981391872,2023-04-21 21:19:44.158,GMT+09:00,lumi.vibration.aq1,2023-04-21 21:19:44.158,3,0,0.0.0_0008,Vibration Sensor Washer,lumi.158d0008d0bbc6
-7,lumi1.54ef4437dcdc,real2.1099052407981391872,2023-04-21 21:21:52.156,GMT+09:00,lumi.sensor_ht.agl02,2023-04-21 21:21:52.156,3,0,0.0.0_0028,Temperature and Humidity Sensor T1,lumi.54ef4410004b2401
