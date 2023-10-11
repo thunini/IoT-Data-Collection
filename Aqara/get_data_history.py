@@ -127,9 +127,69 @@ def get_device_data_from_excel():
         names = device_df['deviceName'].values.tolist()
         lst3 = []
         for i in range(len(lst)):
-            if lst2[i].strip() != "lumi.gateway.aqcn03":
+            # if lst2[i].strip() == "lumi.sen_ill.agl01" or lst2[i].strip() == "lumi.plug.maeu01":
+            if lst2[i].strip() != "lumi.gateway.aqcn03" and lst2[i].strip() != "lumi.plug.maeu01":
                 lst3.append([lst[i], lst2[i], names[i]])
         sensor_lst.append(lst3)
+
+# 
+def get_data_history_iter(access_token, sensor, cnt, today, today_date, iter, hour):
+    next_date = today + datetime.timedelta(hours=hour)
+    for count in range(iter):
+        timestamp = str(int(round(time.time() * 1000)))
+        nonce = get_random_string(16)
+        sign = gen_sign(access_token, app_id, key_id, nonce, timestamp, app_key)
+        data = []
+        today_timestamp = calendar.timegm(today.timetuple()) * 1000
+        next_date_timestamp = calendar.timegm(next_date.timetuple()) * 1000
+        print(today_timestamp - 32400000)
+        print(next_date_timestamp - 32400000)
+        json_data = { "intent": "fetch.resource.history",
+            "data": {
+                "subjectId": f"{sensor[0]}",
+                "resourceIds": get_resource_id(sensor[1]),
+                "startTime": f"{today_timestamp - 32400000}",
+                "endTime": f"{next_date_timestamp - 32400000}",
+                "size": 300
+            }
+        }
+        today = next_date
+        next_date = today + datetime.timedelta(hours=12)
+        with open("sensor_data.json", "w") as json_file:
+            json.dump(json_data, json_file)
+        try:
+            curl = f""" curl -H "Content-Type":"application/json" -H "Accesstoken:{access_token}" -H "Appid:{app_id}" -H "Keyid:{key_id}" -H "Nonce:{nonce}" -H "Time:{timestamp}" -H "sign:{sign}" --data @sensor_data.json https://open-cn.aqara.com/v3.0/open/api """
+            print("------------------------ Getting Sensor Data ---------------------------")
+            response = subprocess.check_output(curl, shell=True, encoding='utf-8')
+            response_data = json.loads(response)
+            data = response_data['result']['data']
+        except Exception as e:
+            print("Error in getting sensor data")
+            logger.error(f"Error in getting sensor data: {e}")
+        df = pd.DataFrame()
+        result = pd.DataFrame()
+        if data != None:
+            for i in reversed(range(len(data))):
+                if data[i]['timeStamp'] != None:
+                    data[i]['timeStamp'] =  datetime.datetime.fromtimestamp(data[i]['timeStamp'] / 1000)
+                    data[i]['timeStamp'] =  data[i]['timeStamp'].strftime("%m/%d/%Y, %H:%M:%S")
+                df = pd.DataFrame(data[i], index=[i])
+                result = pd.concat([result, df])
+            try:
+                if os.path.isdir(f'./sensor_data/{uid_lst[cnt]}/{today_date}'):
+                    filename = f'./sensor_data/{uid_lst[cnt]}/{today_date}/{sensor[2]}_{sensor[0]}_{count}.csv'
+                    result.to_csv(filename)
+                    print(f"file saved {filename}")
+                else:
+                    os.makedirs(f'./sensor_data/{uid_lst[cnt]}/{today_date}')
+                    filename = f'./sensor_data/{uid_lst[cnt]}/{today_date}/{sensor[2]}_{sensor[0]}_{count}.csv'
+                    result.to_csv(filename)
+                    print(f"file saved {filename}")
+            except Exception as e:
+                print("Error in saving sensor data")
+                logger.error(f"Error in saving sensor data: {e}")
+        
+        time.sleep(4)
 
 # get sensor data
 def get_sensor_data():
@@ -137,65 +197,21 @@ def get_sensor_data():
     for cnt in range(len(token_lst)):
         access_token = token_lst[cnt][0]
         refresh_token = token_lst[cnt][1]
-        today = datetime.date(2023, 9, 29) - datetime.timedelta(2)
-        next_date = datetime.date(2023, 9, 29)
+        today_date = datetime.date(2023, 10, 1) - datetime.timedelta(2)
         for sensor in sensor_lst[cnt]:
-            timestamp = str(int(round(time.time() * 1000)))
-            nonce = get_random_string(16)
-            sign = gen_sign(access_token, app_id, key_id, nonce, timestamp, app_key)
-            
-            # cut to 12 hours for env and smart plug
-            if sensor[1] == "lumi.sen_ill.agl01" or sensor[1] == "lumi.plug.maeu01":
 
-                next_date = today + datetime.timedelta(hours=12)
-                for i in range(3):
-                    data = []
-                    json_data = { "intent": "fetch.resource.history",
-                        "data": {
-                            "subjectId": f"{sensor[0]}",
-                            "resourceIds": get_resource_id(sensor[1]),
-                            "startTime": f"{calendar.timegm(today.timetuple()) * 1000 -  32400000}",
-                            "endTime": f"{calendar.timegm(next_date.timetuple()) * 1000 -  32400000}",
-                            "size": 300
-                        }
-                    }
-                    with open("sensor_data.json", "w") as json_file:
-                        json.dump(json_data, json_file)
-                    try:
-                        curl = f""" curl -H "Content-Type":"application/json" -H "Accesstoken:{access_token}" -H "Appid:{app_id}" -H "Keyid:{key_id}" -H "Nonce:{nonce}" -H "Time:{timestamp}" -H "sign:{sign}" --data @sensor_data.json https://open-cn.aqara.com/v3.0/open/api """
-                        print("------------------------ Getting Sensor Data ---------------------------")
-                        response = subprocess.check_output(curl, shell=True, encoding='utf-8')
-                        response_data = json.loads(response)
-                        data = response_data['result']['data']
-                    except Exception as e:
-                        print("Error in getting sensor data")
-                        logger.error(f"Error in getting sensor data: {e}")
-                    df = pd.DataFrame()
-                    result = pd.DataFrame()
-                    if data != None:
-                        for i in reversed(range(len(data))):
-                            if data[i]['timeStamp'] != None:
-                                data[i]['timeStamp'] =  datetime.datetime.fromtimestamp(data[i]['timeStamp'] / 1000)
-                                data[i]['timeStamp'] =  data[i]['timeStamp'].strftime("%m/%d/%Y, %H:%M:%S")
-                            df = pd.DataFrame(data[i], index=[i])
-                            result = pd.concat([result, df])
-                        try:
-                            if os.path.isdir(f'./sensor_data/{uid_lst[cnt]}/{today}'):
-                                filename = f'./sensor_data/{uid_lst[cnt]}/{today}/{sensor[2]}_{sensor[0]}.csv'
-                                result.to_csv(filename)
-                                print(f"file saved {filename}")
-                            else:
-                                os.makedirs(f'./sensor_data/{uid_lst[cnt]}/{today}')
-                                filename = f'./sensor_data/{uid_lst[cnt]}/{today}/{sensor[2]}_{sensor[0]}.csv'
-                                result.to_csv(filename)
-                                print(f"file saved {filename}")
-                        except Exception as e:
-                            print("Error in saving sensor data")
-                            logger.error(f"Error in saving sensor data: {e}")
-                    today = today + datetime.timedelta(hours=12)
-                    next_date = next_date + datetime.timedelta(hours=12)
+            today = datetime.datetime(2023, 10, 1, 0, 0) - datetime.timedelta(2)
+            next_date = datetime.datetime(2023, 10, 1, 0, 0)
             
+            # cut endtime - start time to 12 hours for env and 4 hours for smart plug
+            if sensor[1] == "lumi.sen_ill.agl01":
+                get_data_history_iter(access_token, sensor, cnt, today, today_date, 3, 12)
+            elif sensor[1] == "lumi.plug.maeu01":
+                get_data_history_iter(access_token, sensor, cnt, today, today_date, 9, 4)
             else:
+                timestamp = str(int(round(time.time() * 1000)))
+                nonce = get_random_string(16)
+                sign = gen_sign(access_token, app_id, key_id, nonce, timestamp, app_key)
                 data = []
                 json_data = { "intent": "fetch.resource.history",
                     "data": {
@@ -227,13 +243,13 @@ def get_sensor_data():
                         df = pd.DataFrame(data[i], index=[i])
                         result = pd.concat([result, df])
                     try:
-                        if os.path.isdir(f'./sensor_data/{uid_lst[cnt]}/{today}'):
-                            filename = f'./sensor_data/{uid_lst[cnt]}/{today}/{sensor[2]}_{sensor[0]}.csv'
+                        if os.path.isdir(f'./sensor_data/{uid_lst[cnt]}/{today_date}'):
+                            filename = f'./sensor_data/{uid_lst[cnt]}/{today_date}/{sensor[2]}_{sensor[0]}.csv'
                             result.to_csv(filename)
                             print(f"file saved {filename}")
                         else:
-                            os.makedirs(f'./sensor_data/{uid_lst[cnt]}/{today}')
-                            filename = f'./sensor_data/{uid_lst[cnt]}/{today}/{sensor[2]}_{sensor[0]}.csv'
+                            os.makedirs(f'./sensor_data/{uid_lst[cnt]}/{today_date}')
+                            filename = f'./sensor_data/{uid_lst[cnt]}/{today_date}/{sensor[2]}_{sensor[0]}.csv'
                             result.to_csv(filename)
                             print(f"file saved {filename}")
                     except Exception as e:
@@ -249,7 +265,7 @@ def main():
     global token_lst, app_id, app_key, key_id, sensor_lst, logger, uid_lst
     timestamp = datetime.datetime.now()
     logging.basicConfig(
-        filename=f'logs/aqara.log_{timestamp}',
+        # filename=f'logs/aqara.log_{timestamp}',
         format='%(asctime)s,%(msecs)03d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
         datefmt='%Y-%m-%d:%H:%M:%S',
         level=logging.DEBUG)
