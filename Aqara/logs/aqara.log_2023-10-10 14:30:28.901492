@@ -1,0 +1,2 @@
+2023-10-10:14:30:30,371 ERROR    [get_data_history.py:220] Error in getting sensor data: 'result'
+2023-10-10:14:30:34,828 ERROR    [get_data_history.py:220] Error in getting sensor data: 'result'

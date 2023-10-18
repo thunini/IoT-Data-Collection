@@ -1,0 +1,5 @@
+2023-10-10:14:29:14,501 ERROR    [get_data_history.py:219] Error in getting sensor data: 'result'
+2023-10-10:14:29:19,959 ERROR    [get_data_history.py:219] Error in getting sensor data: 'result'
+2023-10-10:14:29:24,292 ERROR    [get_data_history.py:219] Error in getting sensor data: 'result'
+2023-10-10:14:29:28,589 ERROR    [get_data_history.py:219] Error in getting sensor data: 'result'
+2023-10-10:14:29:32,897 ERROR    [get_data_history.py:219] Error in getting sensor data: 'result'
