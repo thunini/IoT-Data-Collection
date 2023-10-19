@@ -194,11 +194,11 @@ def get_sensor_data():
     for cnt in range(len(token_lst)):
         access_token = token_lst[cnt][0]
         refresh_token = token_lst[cnt][1]
-        today_date = datetime.date(2023, 10, 15) - datetime.timedelta(2)
+        today_date = datetime.date(2023, 10, 17) - datetime.timedelta(2)
         for sensor in sensor_lst[cnt]:
 
-            today = datetime.datetime(2023, 10, 15, 0, 0) - datetime.timedelta(2)
-            next_date = datetime.datetime(2023, 10, 15, 0, 0)
+            today = datetime.datetime(2023, 10, 17, 0, 0) - datetime.timedelta(2)
+            next_date = datetime.datetime(2023, 10, 17, 0, 0)
             
             # cut endtime - start time to 12 hours for env and 4 hours for smart plug
             if sensor[1] == "lumi.sen_ill.agl01":
@@ -280,8 +280,8 @@ def main():
         time.sleep(1)
         get_sensor_data()
         # send Slack notification
-        curl = """ curl -X POST -H 'Content-type: application/json' --data '{"text":"Finished collecting Aqara sensor data"}' https://hooks.slack.com/services/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 """
-        subprocess.check_output(curl, shell=True, encoding='utf-8')
+        # curl = """ curl -X POST -H 'Content-type: application/json' --data '{"text":"Finished collecting Aqara sensor data"}' https://hooks.slack.com/services/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 """
+        # subprocess.check_output(curl, shell=True, encoding='utf-8')
         break
 
 
