@@ -3,19 +3,28 @@ import os
 import pandas as pd
 import datetime  
 import time
-import pymongo
 import logging
 
 # reading input files
 def read_input_files():
+    global strings
     inputs = []
+    uid = []
     with open("input.txt", "r") as file:
         strings = file.readlines()
         for string in strings:
             line = string.strip()
             line = line.split(" ")
-            inputs.append(line)
-    return inputs
+            inputs.append([line[0], line[1]])
+            uid.append(line[2])
+    return inputs, uid
+
+# write newly retrieved tokens 
+def write_tokens_to_file(access_token, refresh_token, user, cnt):
+    global strings
+    strings[cnt] = f'{access_token} {refresh_token} {user}\n'
+    with open("input.txt", 'w') as file:
+        file.writelines(strings)
 
 # retrieve access token
 def get_access_token(code):
@@ -27,7 +36,6 @@ def get_access_token(code):
         refresh_token = response_data['body']['refresh_token']
         return [access_token, refresh_token]
     except Exception as e:
-        print("error")
         logging.error(f"Error retrieving access token: {e}, response: {response_data}")
 
 # refresh access token
@@ -41,25 +49,23 @@ def refresh_access_token(refresh_token):
         refresh_token = response_data['body']['refresh_token']
         return [access_token, refresh_token]
     except Exception as e:
-        print("error")
         logging.error(f"Error retrieving refresh token: {e}, response: {response_data}")
 
 # get sleep data by using "getsummary" action API
-def get_sleep_data(coll):
-    global token_lst
+def get_sleep_data():
+    global token_lst, uid_lst
     for cnt in range(len(token_lst)):
-        print(cnt)
         access_token = token_lst[cnt][0]
         refresh_token = token_lst[cnt][1]   
         updated_token_lst = refresh_access_token(refresh_token)
         action = "getsummary" 
-        # enddate = datetime.date.today()
-        enddate = datetime.date(2023, 5, 29)
-        startdate = enddate - datetime.timedelta(days=1)
+        enddate = datetime.date(2023, 8, 28)
+        startdate = enddate - datetime.timedelta(days=7)
         enddate, startdate = enddate.strftime('%Y-%m-%d'), startdate.strftime('%Y-%m-%d')
         access_token = updated_token_lst[0]
         refresh_token = updated_token_lst[1]
         token_lst[cnt][0], token_lst[cnt][1] = updated_token_lst[0], updated_token_lst[1]
+        write_tokens_to_file(token_lst[cnt][0], token_lst[cnt][1], uid_lst[cnt], cnt)
 
         # Retrieve Data
         print("----------------- Getting Sleep Data -------------------------")
@@ -75,28 +81,20 @@ def get_sleep_data(coll):
         if data == []:
             empty_data = {"date": [f"{enddate}_{cnt+1}"], "startdate": ["none"], "enddate": ["none"]}
             result = pd.DataFrame(empty_data)
-            # setting for inserting it in mongodb
-            users = []
-            for k in range(len(result.index)):
-                users.append(f"user{cnt+1}")
-            result = result.set_index(pd.Series(users))
-            dict_result = result.to_dict()
-            # insert it in mongodb
-            # coll.insert_one(dict_result)
-            result = result.set_index('date')
+
             try:
                 if os.path.isdir(f'./sleep_data/{enddate}/'):
-                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{cnt+1}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
+                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{uid_lst[cnt]}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
                     result.to_csv(filename)
-                    logging.debug(f"sleep data file saved: uid {cnt+1}")
+                    logging.debug(f"sleep data file saved: uid {uid_lst[cnt]}")
                 else:
                     os.makedirs(f'./sleep_data/{enddate}/')
-                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{cnt+1}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
+                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{uid_lst[cnt]}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
                     result.to_csv(filename)
-                    logging.debug(f"sleep data file saved uid {cnt+1}")
+                    logging.debug(f"sleep data file saved uid {uid_lst[cnt]}")
             except Exception as e:
                 print("error")
-                logging.error(f"Error in saving empty sleep data: {e}, uid: {cnt+1}")
+                logging.error(f"Error in saving empty sleep data: {e}, uid: {uid_lst[cnt]}")
 
         else:
             # Preprocess Data and Export as CSV
@@ -118,33 +116,26 @@ def get_sleep_data(coll):
                 df2 = pd.concat([df2, df])
 
             result = pd.concat([result, df2], axis=1)
-            # setting for inserting it in mongodb
-            users = []
-            for k in range(len(result.index)):
-                users.append(f"user{cnt+1}")
-            result = result.set_index(pd.Series(users))
-            dict_result = result.to_dict()
-            # insert in mongodb
-            # coll.insert_one(dict_result)
-            result = result.set_index('date')
+
+
             try:
                 if os.path.isdir(f'./sleep_data/{enddate}/'):
-                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{cnt+1}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
+                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{uid_lst[cnt]}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
                     result.to_csv(filename)
-                    logging.debug(f"sleep data file saved uid {cnt+1}")
+                    logging.debug(f"sleep data file saved uid {uid_lst[cnt]}")
                 else:
                     os.makedirs(f'./sleep_data/{enddate}/')
-                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{cnt+1}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
+                    filename = f'./sleep_data/{enddate}/withings_sleep_data_{uid_lst[cnt]}_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}.csv'
                     result.to_csv(filename)
-                    logging.debug(f"sleep data file saved uid {cnt+1}")
+                    logging.debug(f"sleep data file saved uid {uid_lst[cnt]}")
             except Exception as e:
                 print("error")
-                logging.error(f"Error in saving sleep data: {e}, uid: {cnt+1}")
+                logging.error(f"Error in saving sleep data: {e}, uid: {uid_lst[cnt]}")
 
         time.sleep(7)
 
 # retrieve the device data
-def get_device_data(coll):
+def get_device_data():
     global token_lst
     for cnt in range(len(token_lst)):
         print(cnt)
@@ -179,9 +170,6 @@ def get_device_data(coll):
             for k in range(len(device_df.index)):
                 users.append(f"user{cnt+1}")
             device_df = device_df.set_index(pd.Series(users))
-            dict_result = device_df.to_dict()
-            # insert in mongodb
-            # coll.insert_one(dict_result)
             device_df = device_df.set_index('deviceid')
             try:
                 if os.path.isdir(f'./device_data/{today}/'):
@@ -202,25 +190,14 @@ def get_device_data(coll):
 
 # main Function
 def main():
-    global token_lst
-    token_lst = read_input_files()
+    global token_lst, uid_lst
+    token_lst, uid_lst = read_input_files()
 
-    # Access Mongodb
-    # try:
-    #     conn = pymongo.MongoClient("mongodb://pymongo:pymongo@server1.iclab.dev:3001/")
-    #     db = conn.get_database("Withings_testDB")
-    #     sleep_data_coll = db.get_collection("sleep_data")
-    #     device_data_coll = db.get_collection("device_data")
-    # except Exception as e:
-    #     print("error")
-    #     logging.error(f"Error in accessing mongodb: {e}")
-    sleep_data_coll = ""
-    device_data_coll = ""
     while True:
-        get_sleep_data(sleep_data_coll)
-        time.sleep(10)
-        get_device_data(device_data_coll)
-        time.sleep(10)
+        get_sleep_data()
+        time.sleep(3)
+        get_device_data()
+        time.sleep(3)
         break
     # time.sleep(86400)
 
