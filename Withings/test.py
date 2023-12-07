@@ -19,7 +19,7 @@ def read_input_files():
             uid.append(line[2])
     return inputs, uid
 
-# write newly retrieved tokens 
+# write newly retrieved tokens to input.txt
 def write_tokens_to_file(access_token, refresh_token, user, cnt):
     global strings
     strings[cnt] = f'{access_token} {refresh_token} {user}\n'
