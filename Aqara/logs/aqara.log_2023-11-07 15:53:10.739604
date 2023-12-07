@@ -1,0 +1,2 @@
+2023-11-07:15:54:33,939 ERROR    [get_data_history.py:198] Error in getting sensor data: string indices must be integers, not 'str'
+2023-11-07:15:56:47,230 ERROR    [get_data_history.py:198] Error in getting sensor data: string indices must be integers, not 'str'

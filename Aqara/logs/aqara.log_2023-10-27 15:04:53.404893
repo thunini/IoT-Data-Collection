@@ -1,0 +1,3 @@
+2023-10-27:15:04:53,424 DEBUG    [connectionpool.py:1048] Starting new HTTPS connection (1): open-cn.aqara.com:443
+2023-10-27:15:04:53,717 DEBUG    [connectionpool.py:546] https://open-cn.aqara.com:443 "POST /v3.0/open/api HTTP/1.1" 200 None
+2023-10-27:15:04:54,036 ERROR    [get_data_history.py:111] Error in getting sensor data: 'result'

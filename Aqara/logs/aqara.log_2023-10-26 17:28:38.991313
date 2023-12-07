@@ -1,0 +1,4 @@
+2023-10-26:17:28:39,373 ERROR    [get_data_history.py:88] Error in getting device data with curl: 'result'
+2023-10-26:17:28:39,377 DEBUG    [get_data_history.py:97] Device data: Empty DataFrame
+Columns: []
+Index: []

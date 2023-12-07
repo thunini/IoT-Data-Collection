@@ -1,0 +1,219 @@
+2023-10-27:14:12:56,462 DEBUG    [get_data_history.py:126] Device data:             parentDid                 positionId              createTime  ...  firmwareVersion                       deviceName                    did
+0                      real2.1105195623932174336 2023-07-30 14:15:45.902  ...  3.3.2_0009.0004                           스마트 허브     lumi1.54ef4432208f
+1  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:15:45.902  ...       0.0.0_0029                             Door  lumi.54ef4410003fde9f
+2  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:15:45.902  ...       0.0.0_0029                        Microwave  lumi.54ef4410003fd7fe
+3  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:15:45.902  ...       0.0.0_0008                           Washer    lumi.158d0008d0cc42
+4  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:15:45.902  ...       0.0.0_0008                           Fridge    lumi.158d0008d0cf33
+5  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:15:45.902  ...       0.0.0_0028  Temperature and Humidity Sensor  lumi.54ef44100053a193
+6  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:15:45.902  ...       0.0.0_0027           Light Detection Sensor   lumi.4cf8cdf3c8dcfa2
+7  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:15:45.902  ...       0.0.0_0035                    Motion Sensor  lumi.54ef44100051aa5f
+8  lumi1.54ef4432208f  real2.1105195623932174336 2023-07-30 14:21:27.397  ...       0.0.0_0041                               tv  lumi.54ef4410001e9c6b
+9  lumi1.54ef4432208f  real2.1105195623932174336 2023-10-16 12:17:02.862  ...       0.0.0_0008                            Chair    lumi.158d0008f32cc0
+
+[10 rows x 11 columns]
+2023-10-27:14:13:00,071 DEBUG    [get_data_history.py:126] Device data:             parentDid                 positionId              createTime  ...  firmwareVersion                          deviceName                    did
+0                      real2.1106625840121401344 2023-07-21 21:23:00.243  ...  3.5.2_0010.0004                              Hub E1     lumi1.54ef44321dfc
+1  lumi1.54ef44321dfc  real2.1106625840121401344 2023-07-21 21:23:00.243  ...       0.0.0_0008                             Cleaner    lumi.158d0008f34d6e
+2  lumi1.54ef44321dfc  real2.1106625840121401344 2023-07-21 21:27:10.965  ...       0.0.0_0008                               Chair    lumi.158d0008d0cf4d
+3  lumi1.54ef44321dfc  real2.1106625840121401344 2023-07-21 21:28:38.074  ...       0.0.0_0029                           Microwave  lumi.54ef4410003fea1f
+4  lumi1.54ef44321dfc  real2.1106625840121401344 2023-07-21 21:29:30.988  ...       0.0.0_0029                                Door  lumi.54ef4410003fd148
+5  lumi1.54ef44321dfc  real2.1106625840121401344 2023-07-21 21:30:48.635  ...       0.0.0_0008                              Fridge    lumi.158d0008d0cf9a
+6  lumi1.54ef44321dfc  real2.1106625840121401344 2023-07-21 21:34:20.823  ...       0.0.0_0027              Light Detection Sensor   lumi.4cf8cdf3c8dd60b
+7  lumi1.54ef44321dfc  real2.1106625840121401344 2023-07-26 17:49:15.800  ...       0.0.0_0008                              Washer    lumi.158d0008d0ce43
+8  lumi1.54ef44321dfc  real2.1106625840121401344 2023-10-04 17:34:45.148  ...       0.0.0_0028  Temperature and Humidity Sensor T1  lumi.54ef4410004b1712
+
+[9 rows x 11 columns]
+2023-10-27:14:13:03,477 DEBUG    [get_data_history.py:126] Device data:              parentDid                 positionId              createTime   timeZone  ... state  firmwareVersion  deviceName                    did
+0                       real2.1105141556232634368 2023-07-22 02:01:59.322  GMT+09:00  ...     1  4.0.2_0016.0004      Hub E1     lumi1.54ef4437986f
+1   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:05:54.305  GMT+09:00  ...     1       0.0.0_0035      motion  lumi.54ef44100051aff9
+2   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:09:21.406  GMT+09:00  ...     1       0.0.0_0029        door  lumi.54ef4410003fe65f
+3   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:10:58.384  GMT+09:00  ...     1       0.0.0_0029   microwave  lumi.54ef4410003fe5fd
+4   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:12:54.258  GMT+09:00  ...     1       0.0.0_0027  brightness  lumi.54ef44100065d28b
+5   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:14:39.405  GMT+09:00  ...     1       0.0.0_0028         env  lumi.54ef4410004b0c76
+6   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:20:08.245  GMT+09:00  ...     1       0.0.0_0041          tv  lumi.54ef44100062b6b9
+7   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:21:39.124  GMT+09:00  ...     1       0.0.0_0008      fridge    lumi.158d0008f34a8f
+8   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:26:55.047  GMT+09:00  ...     1       0.0.0_0008      washer    lumi.158d0008f34a74
+9   lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:27:58.497  GMT+09:00  ...     1       0.0.0_0008       chair    lumi.158d0008f34fdf
+10  lumi1.54ef4437986f  real2.1105141556232634368 2023-07-22 02:29:33.071  GMT+09:00  ...     1       0.0.0_0008     cleaner    lumi.158d0008f35087
+
+[11 rows x 11 columns]
+2023-10-27:14:13:06,925 DEBUG    [get_data_history.py:126] Device data:             parentDid                 positionId              createTime   timeZone  ... state  firmwareVersion  deviceName                    did
+0                      real2.1105186472023343104 2023-07-24 04:20:14.139  GMT+09:00  ...     1  3.3.0_0020.0004      Hub E1     lumi1.54ef44321058
+1  lumi1.54ef44321058  real2.1105186472023343104 2023-07-24 04:23:31.619  GMT+09:00  ...     1       0.0.0_0029        door  lumi.54ef4410003fd579
+2  lumi1.54ef44321058  real2.1105186472023343104 2023-07-24 04:25:07.072  GMT+09:00  ...     1       0.0.0_0027  brightness  lumi.54ef44100065d1e0
+3  lumi1.54ef44321058  real2.1105186472023343104 2023-07-24 04:30:12.226  GMT+09:00  ...     1       0.0.0_0029   Microwave  lumi.54ef4410003fe0df
+4  lumi1.54ef44321058  real2.1105186472023343104 2023-07-24 04:31:43.865  GMT+09:00  ...     1       0.0.0_0008       Chair    lumi.158d0008f34328
+5  lumi1.54ef44321058  real2.1105186472023343104 2023-07-24 04:33:12.005  GMT+09:00  ...     1       0.0.0_0035      Motion  lumi.54ef44100051ac6a
+6  lumi1.54ef44321058  real2.1105186472023343104 2023-07-24 04:34:25.513  GMT+09:00  ...     1       0.0.0_0008      Washer    lumi.158d0008f34b7d
+7  lumi1.54ef44321058  real2.1105186472023343104 2023-07-24 04:35:58.483  GMT+09:00  ...     1       0.0.0_0008     Cleaner    lumi.158d0008d0bfbb
+8  lumi1.54ef44321058  real2.1105186472023343104 2023-07-24 04:37:45.137  GMT+09:00  ...     1       0.0.0_0028         env  lumi.54ef4410004b13b2
+
+[9 rows x 11 columns]
+2023-10-27:14:13:10,309 DEBUG    [get_data_history.py:126] Device data:             parentDid                 positionId              createTime   timeZone  ... state  firmwareVersion  deviceName                    did
+0                      real2.1105426721776357376 2023-08-10 22:23:30.263  GMT+09:00  ...     0  3.3.0_0020.0004      Hub E1     lumi1.54ef44379f3c
+1  lumi1.54ef44379f3c  real2.1105426721776357376 2023-08-10 22:26:29.003  GMT+09:00  ...     0       0.0.0_0035      Motion  lumi.54ef44100051b2bd
+2  lumi1.54ef44379f3c  real2.1105426721776357376 2023-08-21 21:34:22.427  GMT+09:00  ...     0       0.0.0_0029        Door  lumi.54ef4410003fe1c9
+3  lumi1.54ef44379f3c  real2.1105426721776357376 2023-08-21 21:36:18.710  GMT+09:00  ...     0       0.0.0_0027  Brightness  lumi.54ef44100065d5b3
+4  lumi1.54ef44379f3c  real2.1105426721776357376 2023-08-21 21:37:47.022  GMT+09:00  ...     0       0.0.0_0008      Fridge    lumi.158d0008f34290
+5  lumi1.54ef44379f3c  real2.1105426721776357376 2023-08-21 21:41:25.396  GMT+09:00  ...     0       0.0.0_0029   Microwave  lumi.54ef4410003fe55a
+6  lumi1.54ef44379f3c  real2.1105426721776357376 2023-08-21 21:45:32.587  GMT+09:00  ...     0       0.0.0_0008       Chair    lumi.158d0008f34bf3
+7  lumi1.54ef44379f3c  real2.1105426721776357376 2023-08-21 21:46:26.958  GMT+09:00  ...     0       0.0.0_0008      Washer    lumi.158d0008f34d64
+8  lumi1.54ef44379f3c  real2.1105426721776357376 2023-08-21 21:48:04.352  GMT+09:00  ...     0       0.0.0_0008     Cleaner    lumi.158d0008f34935
+9  lumi1.54ef44379f3c  real2.1105426721776357376 2023-08-21 21:49:52.877  GMT+09:00  ...     0       0.0.0_0028         Env  lumi.54ef4410004b0fdb
+
+[10 rows x 11 columns]
+2023-10-27:14:13:13,715 DEBUG    [get_data_history.py:126] Device data:              parentDid                 positionId              createTime  ...  firmwareVersion                       deviceName                    did
+0                       real2.1105481765363605504 2023-07-25 22:33:18.556  ...  3.3.2_0008.0004                     Smart Hub E1     lumi1.54ef443798f5
+1   lumi1.54ef443798f5  real2.1105481765363605504 2023-07-25 22:33:18.556  ...       0.0.0_0029                        Microwave  lumi.54ef4410003fd9b7
+2   lumi1.54ef443798f5  real2.1105481765363605504 2023-07-25 22:33:18.556  ...       0.0.0_0008                           Washer    lumi.158d0008f34e54
+3   lumi1.54ef443798f5  real2.1105481765363605504 2023-07-25 22:33:18.556  ...       0.0.0_0008                            Chair    lumi.158d0008f3a542
+4   lumi1.54ef443798f5  real2.1105481765363605504 2023-07-25 22:35:12.966  ...       0.0.0_0028  Temperature and Humidity Sensor  lumi.54ef4410004b0ef6
+5   lumi1.54ef443798f5  real2.1105481765363605504 2023-07-25 22:36:39.383  ...       0.0.0_0027                Brightness Sensor  lumi.54ef44100065d189
+6   lumi1.54ef443798f5  real2.1105481765363605504 2023-07-25 22:38:30.525  ...       0.0.0_0029                             Door  lumi.54ef4410003fd665
+7   lumi1.54ef443798f5  real2.1105481765363605504 2023-07-25 22:59:25.519  ...       0.0.0_0035                    Motion Sensor  lumi.54ef44100051ac98
+8   lumi1.54ef443798f5  real2.1105481765363605504 2023-07-25 23:02:09.382  ...       0.0.0_0041                       Smart Plug  lumi.54ef44100062b5af
+9   lumi1.54ef443798f5  real2.1105481765363605504 2023-08-07 01:01:24.806  ...       0.0.0_0008                          Cleaner    lumi.158d0008f341bd
+10  lumi1.54ef443798f5  real2.1105481765363605504 2023-08-15 14:32:06.343  ...       0.0.0_0008                           Fridge    lumi.158d0008f3a544
+
+[11 rows x 11 columns]
+2023-10-27:14:13:17,141 DEBUG    [get_data_history.py:126] Device data:             parentDid                 positionId              createTime   timeZone  ... state  firmwareVersion  deviceName                    did
+0                      real2.1106526963740925952 2023-07-23 16:23:58.520  GMT+09:00  ...     1  3.3.0_0020.0004      Hub E1     lumi1.54ef443798bf
+1  lumi1.54ef443798bf  real2.1106526963740925952 2023-07-23 16:27:42.127  GMT+09:00  ...     1       0.0.0_0008     cleaner    lumi.158d0008f34a85
+2  lumi1.54ef443798bf  real2.1106526963740925952 2023-07-23 16:28:37.483  GMT+09:00  ...     1       0.0.0_0035      motion  lumi.54ef44100051ac1c
+3  lumi1.54ef443798bf  real2.1106526963740925952 2023-07-23 16:29:49.626  GMT+09:00  ...     1       0.0.0_0008       chair    lumi.158d0008f34c71
+4  lumi1.54ef443798bf  real2.1106526963740925952 2023-07-23 16:32:18.485  GMT+09:00  ...     1       0.0.0_0008      fridge    lumi.158d0008f3491f
+5  lumi1.54ef443798bf  real2.1106526963740925952 2023-07-23 16:33:56.251  GMT+09:00  ...     1       0.0.0_0027  brightness  lumi.54ef44100065cf4d
+6  lumi1.54ef443798bf  real2.1106526963740925952 2023-07-23 16:35:37.277  GMT+09:00  ...     1       0.0.0_0029   microwave  lumi.54ef4410003fe7b5
+7  lumi1.54ef443798bf  real2.1106526963740925952 2023-07-23 16:36:34.701  GMT+09:00  ...     1       0.0.0_0029        door  lumi.54ef4410003fe837
+
+[8 rows x 11 columns]
+2023-10-27:14:13:20,607 DEBUG    [get_data_history.py:126] Device data:             parentDid                 positionId              createTime  ...  firmwareVersion                       deviceName                    did
+0                      real2.1105449393813680128 2023-10-05 18:40:13.960  ...  3.3.0_0020.0004                     Smart Hub E1     lumi1.54ef44377d19
+1  lumi1.54ef44377d19  real2.1105449393813680128 2023-10-05 18:40:13.960  ...       0.0.0_0008                           Washer    lumi.158d0008f34b7e
+2  lumi1.54ef44377d19  real2.1105449393813680128 2023-10-05 18:41:22.858  ...       0.0.0_0035                    Motion Sensor  lumi.54ef44100051ac99
+3  lumi1.54ef44377d19  real2.1105449393813680128 2023-10-05 18:44:34.852  ...       0.0.0_0029                        Microwave  lumi.54ef4410003fe26d
+4  lumi1.54ef44377d19  real2.1105449393813680128 2023-10-05 18:46:13.106  ...       0.0.0_0029                             Door  lumi.54ef4410003fd71e
+5  lumi1.54ef44377d19  real2.1105449393813680128 2023-10-05 18:48:12.020  ...       0.0.0_0008                           Fridge    lumi.158d0008f34adb
+6  lumi1.54ef44377d19  real2.1105449393813680128 2023-10-05 18:57:43.425  ...       0.0.0_0027                Brightness Sensor  lumi.54ef44100065d28d
+7  lumi1.54ef44377d19  real2.1105449393813680128 2023-10-05 19:00:28.343  ...       0.0.0_0028  Temperature and Humidity Sensor  lumi.54ef4410004b19e8
+8  lumi1.54ef44377d19  real2.1105449393813680128 2023-10-05 19:04:28.518  ...       0.0.0_0008                            Chair    lumi.158d0008f3a422
+9  lumi1.54ef44377d19  real2.1105449393813680128 2023-10-05 19:05:15.320  ...       0.0.0_0008                          Cleaner    lumi.158d0008f34dd2
+
+[10 rows x 11 columns]
+2023-10-27:14:13:24,001 DEBUG    [get_data_history.py:126] Device data:             parentDid                 positionId              createTime  ...  firmwareVersion                       deviceName                    did
+0                      real2.1105536655133995008 2023-07-23 22:17:02.351  ...  3.3.0_0020.0004                     Smart Hub E1     lumi1.54ef4437dc19
+1  lumi1.54ef4437dc19  real2.1105536655133995008 2023-07-23 22:18:10.575  ...       0.0.0_0029                             Door  lumi.54ef4410003fe821
+2  lumi1.54ef4437dc19  real2.1105536655133995008 2023-07-23 22:19:06.033  ...       0.0.0_0035                    Motion Sensor  lumi.54ef44100051b148
+3  lumi1.54ef4437dc19  real2.1105536655133995008 2023-07-23 22:19:48.770  ...       0.0.0_0027                Brightness Sensor  lumi.54ef44100065d2f0
+4  lumi1.54ef4437dc19  real2.1105536655133995008 2023-07-23 22:20:22.842  ...       0.0.0_0028  Temperature and Humidity Sensor  lumi.54ef4410004b13a4
+5  lumi1.54ef4437dc19  real2.1105536655133995008 2023-07-23 22:22:05.537  ...       0.0.0_0008                           Washer    lumi.158d0008f34dce
+6  lumi1.54ef4437dc19  real2.1105536655133995008 2023-07-23 22:22:29.356  ...       0.0.0_0008                            Chair    lumi.158d0008f3a4c6
+7  lumi1.54ef4437dc19  real2.1105536655133995008 2023-07-23 22:22:47.811  ...       0.0.0_0008                          Cleaner    lumi.158d0008d0ce9d
+8  lumi1.54ef4437dc19  real2.1105536655133995008 2023-07-23 22:24:19.427  ...       0.0.0_0029                        Microwave  lumi.54ef4410003fe04b
+9  lumi1.54ef4437dc19  real2.1105536655133995008 2023-07-23 22:25:15.489  ...       0.0.0_0008                           Fridge    lumi.158d0008f34c4c
+
+[10 rows x 11 columns]
+2023-10-27:14:13:27,495 DEBUG    [get_data_history.py:126] Device data:             parentDid                 positionId              createTime  ...  firmwareVersion                       deviceName                    did
+0                      real2.1105458479476989952 2023-07-23 21:24:54.728  ...  3.3.0_0020.0004                           Hub E1     lumi1.54ef443784b7
+1  lumi1.54ef443784b7  real2.1105458479476989952 2023-07-23 21:24:54.728  ...       0.0.0_0008                           Washer    lumi.158d0008f34a53
+2  lumi1.54ef443784b7  real2.1105458479476989952 2023-07-23 21:24:54.728  ...       0.0.0_0027           Light Detection Sensor  lumi.54ef44100065d68c
+3  lumi1.54ef443784b7  real2.1105458479476989952 2023-07-23 21:24:54.728  ...       0.0.0_0008                           Fridge    lumi.158d0008f34ea2
+4  lumi1.54ef443784b7  real2.1105458479476989952 2023-07-23 21:24:54.728  ...       0.0.0_0008                           Cooker    lumi.158d0008f34b78
+5  lumi1.54ef443784b7  real2.1105458479476989952 2023-07-23 21:24:54.728  ...       0.0.0_0035                    Motion Sensor  lumi.54ef44100051aeba
+6  lumi1.54ef443784b7  real2.1105458479476989952 2023-07-23 21:24:54.728  ...       0.0.0_0029                        Microwave  lumi.54ef4410003fdef6
+7  lumi1.54ef443784b7  real2.1105458479476989952 2023-07-23 21:24:54.728  ...       0.0.0_0028  Temperature and Humidity Sensor  lumi.54ef4410004b0f2b
+8  lumi1.54ef443784b7  real2.1105458479476989952 2023-07-23 21:24:54.728  ...       0.0.0_0029                             Door  lumi.54ef4410003fd65f
+9  lumi1.54ef443784b7  real2.1105458479476989952 2023-07-31 21:33:23.644  ...       0.0.0_0008                          Cleaner    lumi.158d0008f34f9b
+
+[10 rows x 11 columns]
+2023-10-27:14:13:30,900 DEBUG    [get_data_history.py:126] Device data:             parentDid                 positionId              createTime  ...  firmwareVersion                          deviceName                    did
+0                      real2.1105537251106578432 2023-08-04 18:21:15.968  ...  3.3.2_0008.0004                           스마트 허브 E1     lumi1.54ef4437b8c6
+1  lumi1.54ef4437b8c6  real2.1105537251106578432 2023-08-04 18:24:33.790  ...       0.0.0_0028  Temperature and Humidity Sensor T1  lumi.54ef4410004b2218
+2  lumi1.54ef4437b8c6  real2.1105537251106578432 2023-08-04 18:26:10.282  ...       0.0.0_0029                                Door  lumi.54ef4410003fe239
+3  lumi1.54ef4437b8c6  real2.1105537251106578432 2023-08-04 18:26:46.048  ...       0.0.0_0008                              Washer    lumi.158d0008f3a56a
+4  lumi1.54ef4437b8c6  real2.1105537251106578432 2023-08-04 18:27:41.294  ...       0.0.0_0035                       Motion Sensor  lumi.54ef44100051ac4a
+5  lumi1.54ef4437b8c6  real2.1105537251106578432 2023-08-04 18:29:16.914  ...       0.0.0_0027                          Brightness  lumi.54ef44100065d1d1
+6  lumi1.54ef4437b8c6  real2.1105537251106578432 2023-08-04 18:33:20.258  ...       0.0.0_0008                             Cleaner    lumi.158d0008f3427d
+7  lumi1.54ef4437b8c6  real2.1105537251106578432 2023-08-14 10:36:29.370  ...       0.0.0_0008                              Fridge    lumi.158d0008f32cb9
+8  lumi1.54ef4437b8c6  real2.1105537251106578432 2023-10-14 19:41:48.508  ...       0.0.0_0029                           Microwave  lumi.54ef4410003fdb57
+
+[9 rows x 11 columns]
+2023-10-27:14:13:34,604 DEBUG    [get_data_history.py:126] Device data:             parentDid                 positionId              createTime   timeZone  ... state  firmwareVersion  deviceName                    did
+0                      real2.1105862001217728512 2023-07-30 08:46:14.940  GMT+09:00  ...     1  3.3.0_0020.0004      Hub E1     lumi1.54ef44379eb4
+1  lumi1.54ef44379eb4  real2.1105862001217728512 2023-07-30 14:10:23.403  GMT+09:00  ...     1       0.0.0_0008     cleaner    lumi.158d0008f34bfe
+2  lumi1.54ef44379eb4  real2.1105862001217728512 2023-07-30 14:11:38.655  GMT+09:00  ...     1       0.0.0_0008      washer    lumi.158d0008f34a6e
+3  lumi1.54ef44379eb4  real2.1105862001217728512 2023-07-30 14:12:22.853  GMT+09:00  ...     1       0.0.0_0008       chair    lumi.158d0008f34ed7
+4  lumi1.54ef44379eb4  real2.1105862001217728512 2023-08-02 07:23:59.438  GMT+09:00  ...     1       0.0.0_0029        door  lumi.54ef4410003fe7bf
+5  lumi1.54ef44379eb4  real2.1105862001217728512 2023-08-02 07:25:20.606  GMT+09:00  ...     1       0.0.0_0029   microwave  lumi.54ef4410003fd51d
+6  lumi1.54ef44379eb4  real2.1105862001217728512 2023-08-02 07:27:06.577  GMT+09:00  ...     1       0.0.0_0028         env  lumi.54ef4410004b21c8
+7  lumi1.54ef44379eb4  real2.1105862001217728512 2023-08-02 07:28:39.014  GMT+09:00  ...     1       0.0.0_0027  brightness  lumi.54ef44100065d74a
+8  lumi1.54ef44379eb4  real2.1105862001217728512 2023-08-02 07:30:52.068  GMT+09:00  ...     1       0.0.0_0035      motion  lumi.54ef44100051b1dc
+9  lumi1.54ef44379eb4  real2.1105862001217728512 2023-10-06 23:06:05.218  GMT+09:00  ...     1       0.0.0_0008      fridge    lumi.158d0008f34920
+
+[10 rows x 11 columns]
+2023-10-27:14:13:38,032 DEBUG    [get_data_history.py:126] Device data:             parentDid                 positionId              createTime   timeZone  ... state  firmwareVersion  deviceName                    did
+0                      real2.1105901277359095808 2023-07-21 10:58:15.995  GMT+09:00  ...     0  3.3.0_0020.0004      Hub E1     lumi1.54ef443787b5
+1  lumi1.54ef443787b5  real2.1105901277359095808 2023-07-21 11:00:11.881  GMT+09:00  ...     0       0.0.0_0029        door  lumi.54ef4410003fd550
+2  lumi1.54ef443787b5  real2.1105901277359095808 2023-07-21 11:02:46.088  GMT+09:00  ...     0       0.0.0_0029   microwave  lumi.54ef4410003fe622
+3  lumi1.54ef443787b5  real2.1105901277359095808 2023-07-21 11:05:24.851  GMT+09:00  ...     0       0.0.0_0035      motion  lumi.54ef44100051af6d
+4  lumi1.54ef443787b5  real2.1105901277359095808 2023-07-21 11:08:05.456  GMT+09:00  ...     0       0.0.0_0027  brightness  lumi.54ef44100065d162
+5  lumi1.54ef443787b5  real2.1105901277359095808 2023-07-21 11:09:59.143  GMT+09:00  ...     0       0.0.0_0028         env  lumi.54ef4410004b0b00
+6  lumi1.54ef443787b5  real2.1105901277359095808 2023-07-21 11:11:00.917  GMT+09:00  ...     0       0.0.0_0008      fridge    lumi.158d0008f35079
+7  lumi1.54ef443787b5  real2.1105901277359095808 2023-07-21 11:17:49.535  GMT+09:00  ...     0       0.0.0_0008       chair    lumi.158d0008f3a4dd
+8  lumi1.54ef443787b5  real2.1105901277359095808 2023-07-21 11:20:03.357  GMT+09:00  ...     0       0.0.0_0008     cleaner    lumi.158d000896caeb
+9  lumi1.54ef443787b5  real2.1105901277359095808 2023-07-21 11:22:23.415  GMT+09:00  ...     0       0.0.0_0008      washer    lumi.158d0008f34d26
+
+[10 rows x 11 columns]
+2023-10-27:14:13:41,493 DEBUG    [get_data_history.py:126] Device data:              parentDid                 positionId              createTime   timeZone  ... state  firmwareVersion     deviceName                    did
+0                       real2.1106171710496067584 2023-07-27 03:30:45.322  GMT+09:00  ...     1  3.3.0_0020.0004   Smart Hub E1     lumi1.54ef4437a130
+1   lumi1.54ef4437a130  real2.1106171710496067584 2023-07-27 03:36:12.348  GMT+09:00  ...     1       0.0.0_0008         Washer    lumi.158d0008f34e43
+2   lumi1.54ef4437a130  real2.1106171710496067584 2023-07-27 03:37:56.532  GMT+09:00  ...     1       0.0.0_0008        Cleaner    lumi.158d0008f3467a
+3   lumi1.54ef4437a130  real2.1106171710496067584 2023-07-27 03:38:52.398  GMT+09:00  ...     1       0.0.0_0008          Chair    lumi.158d0008f34c7a
+4   lumi1.54ef4437a130  real2.1106171710496067584 2023-07-27 03:39:31.803  GMT+09:00  ...     1       0.0.0_0008         Fridge    lumi.158d0008f34cd6
+5   lumi1.54ef4437a130  real2.1106171710496067584 2023-07-27 03:40:31.525  GMT+09:00  ...     1       0.0.0_0029           Door  lumi.54ef4410003fd291
+6   lumi1.54ef4437a130  real2.1106171710496067584 2023-07-27 03:41:17.159  GMT+09:00  ...     1       0.0.0_0029      Microwave  lumi.54ef4410003fe82c
+7   lumi1.54ef4437a130  real2.1106171710496067584 2023-07-27 03:42:02.686  GMT+09:00  ...     1       0.0.0_0028            emv  lumi.54ef4410004b18a1
+8   lumi1.54ef4437a130  real2.1106171710496067584 2023-07-27 03:43:55.308  GMT+09:00  ...     1       0.0.0_0027     Brightness  lumi.54ef44100065cf48
+9   lumi1.54ef4437a130  real2.1106171710496067584 2023-07-27 03:45:22.348  GMT+09:00  ...     1       0.0.0_0035  Motion Sensor  lumi.54ef44100051b0d7
+10  lumi1.54ef4437a130  real2.1106171710496067584 2023-07-27 03:47:03.993  GMT+09:00  ...     1       0.0.0_0041             tv  lumi.54ef44100062a003
+
+[11 rows x 11 columns]
+2023-10-27:14:13:44,898 DEBUG    [get_data_history.py:126] Device data:             parentDid                 positionId              createTime  ...  firmwareVersion                       deviceName                    did
+0                      real2.1106508451140620288 2023-07-24 22:31:49.980  ...  3.3.0_0020.0004                           Hub E1     lumi1.54ef4437d886
+1  lumi1.54ef4437d886  real2.1106508451140620288 2023-07-24 22:31:49.980  ...       0.0.0_0008                            Chair    lumi.158d0008f3a560
+2  lumi1.54ef4437d886  real2.1106508451140620288 2023-07-24 22:31:49.980  ...       0.0.0_0029                        Microwave  lumi.54ef4410003fe822
+3  lumi1.54ef4437d886  real2.1106508451140620288 2023-07-24 22:31:49.980  ...       0.0.0_0027                Brightness Sensor  lumi.54ef44100065d666
+4  lumi1.54ef4437d886  real2.1106508451140620288 2023-07-24 22:31:49.980  ...       0.0.0_0028  Temperature and Humidity Sensor  lumi.54ef4410004b0b21
+5  lumi1.54ef4437d886  real2.1106508451140620288 2023-10-06 20:23:39.888  ...       0.0.0_0008                           Washer    lumi.158d0008f3a554
+6  lumi1.54ef4437d886  real2.1106508451140620288 2023-10-06 20:24:32.150  ...       0.0.0_0035                    Motion Sensor  lumi.54ef44100051b205
+7  lumi1.54ef4437d886  real2.1106508451140620288 2023-10-06 20:26:33.368  ...       0.0.0_0029                             Door  lumi.54ef4410003fd759
+8  lumi1.54ef4437d886  real2.1106508451140620288 2023-10-06 20:27:14.672  ...       0.0.0_0008                  Cleaner(Roller)    lumi.158d0008f34b74
+
+[9 rows x 11 columns]
+2023-10-27:14:13:48,721 DEBUG    [get_data_history.py:126] Device data:              parentDid                 positionId              createTime  ...  firmwareVersion                       deviceName                    did
+0                       real2.1106634928438886400 2023-08-01 21:56:46.449  ...  3.3.0_0020.0004                     Smart Hub E1     lumi1.54ef4437dd24
+1   lumi1.54ef4437dd24  real2.1106634928438886400 2023-08-01 22:01:15.792  ...       0.0.0_0028  Temperature and Humidity Sensor  lumi.54ef4410004b16e7
+2   lumi1.54ef4437dd24  real2.1106634928438886400 2023-08-01 22:08:36.208  ...       0.0.0_0029                             Door  lumi.54ef4410003fe2da
+3   lumi1.54ef4437dd24  real2.1106634928438886400 2023-08-01 22:10:18.294  ...       0.0.0_0027                Brightness Sensor  lumi.54ef44100065d508
+4   lumi1.54ef4437dd24  real2.1106634928438886400 2023-08-01 22:21:32.996  ...       0.0.0_0035                    Motion Sensor  lumi.54ef44100051ad7c
+5   lumi1.54ef4437dd24  real2.1106634928438886400 2023-08-02 21:00:17.685  ...       0.0.0_0029                        Microwave  lumi.54ef4410003fd152
+6   lumi1.54ef4437dd24  real2.1106634928438886400 2023-08-02 21:04:24.077  ...       0.0.0_0008                            Chair    lumi.158d0008f34ae7
+7   lumi1.54ef4437dd24  real2.1106634928438886400 2023-08-02 21:07:19.611  ...       0.0.0_0008                           Fridge    lumi.158d0008f34f33
+8   lumi1.54ef4437dd24  real2.1106634928438886400 2023-08-02 21:22:46.515  ...       0.0.0_0008                           Washer    lumi.158d0008f34b37
+9   lumi1.54ef4437dd24  real2.1106634928438886400 2023-08-02 21:23:46.113  ...       0.0.0_0008                          Cleaner    lumi.158d0008f34a20
+10  lumi1.54ef4437dd24  real2.1106634928438886400 2023-10-11 21:12:06.684  ...       0.0.0_0041                               tv  lumi.54ef44100062b07f
+
+[11 rows x 11 columns]
+2023-10-27:14:13:52,277 DEBUG    [get_data_history.py:126] Device data:             parentDid                 positionId              createTime   timeZone  ... state  firmwareVersion  deviceName                    did
+0                      real2.1106241163527213056 2023-07-24 22:21:01.557  GMT+09:00  ...     0  3.3.0_0020.0004      Hub E1     lumi1.54ef44379e87
+1  lumi1.54ef44379e87  real2.1106241163527213056 2023-07-24 22:23:19.275  GMT+09:00  ...     0       0.0.0_0028         env  lumi.54ef4410004b11ca
+2  lumi1.54ef44379e87  real2.1106241163527213056 2023-07-24 22:25:15.359  GMT+09:00  ...     0       0.0.0_0027  Brightness  lumi.54ef44100065d0af
+3  lumi1.54ef44379e87  real2.1106241163527213056 2023-07-24 22:25:59.291  GMT+09:00  ...     0       0.0.0_0035      motion  lumi.54ef44100051b160
+4  lumi1.54ef44379e87  real2.1106241163527213056 2023-07-24 22:28:10.704  GMT+09:00  ...     0       0.0.0_0008       Chair    lumi.158d0008f3a553
+5  lumi1.54ef44379e87  real2.1106241163527213056 2023-07-24 22:29:51.969  GMT+09:00  ...     0       0.0.0_0029   Microwave  lumi.54ef4410003fe211
+6  lumi1.54ef44379e87  real2.1106241163527213056 2023-07-24 22:31:28.106  GMT+09:00  ...     0       0.0.0_0008      Fridge    lumi.158d0008f3a539
+7  lumi1.54ef44379e87  real2.1106241163527213056 2023-07-24 22:33:04.649  GMT+09:00  ...     0       0.0.0_0008      Washer    lumi.158d0008f34a7b
+8  lumi1.54ef44379e87  real2.1106241163527213056 2023-07-24 22:34:25.254  GMT+09:00  ...     0       0.0.0_0029        Door  lumi.54ef4410003fdd47
+9  lumi1.54ef44379e87  real2.1106241163527213056 2023-07-24 22:38:12.428  GMT+09:00  ...     0       0.0.0_0008     Cleaner    lumi.158d0008f34278
+
+[10 rows x 11 columns]
