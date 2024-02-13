@@ -1,3 +1,0 @@
-date,startdate,enddate,created,modified,wakeupduration,wakeupcount,durationtosleep,remsleepduration,durationtowakeup,total_timeinbed,total_sleep_time,sleep_efficiency,sleep_latency,wakeup_latency,waso,nb_rem_episodes,out_of_bed_count,lightsleepduration,deepsleepduration
-2023-05-13,2023-05-13 04:29:S.000000,2023-05-13 08:18:S.000000,2023-05-13 06:54:S.000000,2023-05-13 10:21:S.000000,900,2,900,1260,0,13440,12540,0.93,900,0,300,0,1,7860,3420
-2023-05-15,2023-05-15 03:08:S.000000,2023-05-15 08:17:S.000000,2023-05-15 08:11:S.000000,2023-05-15 10:20:S.000000,2640,1,2640,4740,0,18480,15840,0.86,2640,0,60,2,1,7500,3600
